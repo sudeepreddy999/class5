@@ -1,0 +1,294 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block links %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'main/styles/profile.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="w3-container w3-round-xlarge" style="width: 100%; height:auto; ">
+    <div class="w3-row-padding">
+        <div class="w3-col w3-card-4 w3-round-xxlarge w3-container" style="width: 20%; margin-top: 30px; margin-bottom: 25px; height: 920px; margin-right: 15px; background-color: #2c4776;">
+            <div class="w3-container w3-center w3-round-xxlarge " style="margin-top:25px; margin-right:20px; margin-left:20px; padding-top:10px; background-color: #6f82a797;">
+                <img id="profileImage1" src="{{ request.user.profilepic.url }}" class="w3-circle" width="150px" height="150px" style="border-radius: 50%;">
+                <p style="color: white;"><b>{{request.user.first_name}} {{request.user.last_name}}</b></p>
+                <p style="margin-top:-10px; color: white; font-size: small;">{{request.user.email}}</p>
+            </div>
+            <hr class="w3-border w3-grey" style="border: 2px; margin: 20px 0; margin-bottom: 15px;">
+            <div class="w3-container" style="margin-top:-10px;">
+                <p style="width: 100%; text-align: center; color: white; padding: 0; border: 0; margin: 0;"><b style="font-size: 30px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">MENU</b></p>
+                <hr class="w3-border w3-grey" style="margin:0 -12px ;margin-bottom: 20px; border: 2px;">
+                <a href="/" style='text-decoration:none;'><button class="w3-button w3-xlarge" style="margin-left: 30px;border-radius: 20px; width: 260px;display: block; color:white;"><i class="fa fa-home"></i> Home</button></a>
+                <!-- <button class="w3-button w3-hover-red w3-ripple " style="display: block;color: white;"><i class="fa fa-file"></i> COURSES</button> -->
+                <a href="/home/announcements/{{id}}" style='text-decoration:none;'><button class="w3-button w3-xlarge" style="margin-left: 30px;border-radius: 20px;width: 260px;display: block;color: white;"><i class="fa fa-dashboard"></i> Announcements</button></a>
+                <a href="{% url 'calendar' %}" style='text-decoration:none;'><button class="w3-button w3-xlarge" style="margin-left: 30px;border-radius: 20px;width: 260px; display: block;color: white;  "><i class="fa fa-calendar"></i> Calendar</button></a>
+                <a href="/courses" style="text-decoration:none;"><button class="w3-button w3-xlarge" style="margin-left: 30px;border-radius: 20px;width: 260px; display: block;color: white; "><i class="fa fa-book"></i> Course</button></a>
+                <!-- <button class="w3-button w3-xlarge" style="display: block; color:white;"><i class="fa fa-file"></i> COURSES</button> -->
+            </div>
+            <div class="w3-container w3-center" style="margin-top:12px;">
+            <button class="w3-button w3-ripple w3-round-xxlarge" style="background-color: #f3763e;font-size: large; margin-top:190px; padding:15px 25px;">LOGOUT <i class="fa fa-sign-out"></i></button>
+            </div>
+        </div>
+        <div class="w3-container w3-col" style="background-color: #d8f7ea;border-radius: 40px; margin-top: 25px; margin-bottom: 25px; height: 920px; padding-top: 20px;padding-left:40px; margin-right: 15px; width:60%;">
+        <h1 style="font-size:  55px;font-family: roboto system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: #000;">My Account</h1>
+        <p style="margin-top: -10px; font-size:18px; color:#000;">You can change your account settings here</p>
+        <button class="w3-button w3-white" style="margin-top: 15px; width: 160px; border-top: 5px solid red; border-top-left-radius: 10px; " onclick="OpenTab('Personal_Info')">Personal Info</button>
+        <button class="w3-button w3-white" style="margin-top: 15px; width: 150px;margin-left: -7px; border-top: 5px solid #96c9c5;border-top-right-radius: 10px; " onclick="OpenTab('Performance')">Performance</button>
+        <div class="w3-container w3-white" style="height: 695px; width:100%; padding-top: 10px;padding-left:25px;border-bottom-left-radius: 40px;border-bottom-right-radius: 40px;border-top-right-radius: 40px;">
+        <div id="Personal_Info" class="w3-display-container Tab">
+            <button id="editFieldsButton" class="w3-display-topright" onclick="editFields()"><i class="fa fa-pencil"></i></button>
+            <button id="cancelFieldsButton" class="w3-display-topright" onclick="cancelFields()" style="margin-right: 20px; display: none;">Cancel</button>
+            
+        <h2 style="color: #757575;">Your Basic Information</h2>
+        <hr style="border: 0.5px dotted grey; margin-top: -3px;">
+        <div class="w3-row-padding">
+            <div class="w3-half">
+                <p><strong>Full Name:</strong></p>
+                <p class="w3-container " id="FullName" style="background: color darkcyan;height:40px;text-align: left;padding-top:8px;padding-left:5px;border:2px solid black;border-radius:15px;font-style:unset;">{{request.user.first_name}} {{request.user.last_name}}</p>
+            </div>
+            <div class="w3-half">
+                <p><strong>Email Id:</strong></p>
+                <p class="w3-input w3-border-black w3-round-xxlarge " id="EmailId" style="border:2px solid black;border-radius:15px;" >{{request.user.email}}</p>
+            </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-half">
+                <p><strong>Enrollment Number:</strong></p>
+                <p class="w3-input w3-border-black w3-round-xxlarge " style="border:2px solid black;border-radius:15px;" id="EnrollmentNumber">{{request.user.enrollment}}</p>
+            </div>
+            <form method = "POST" action= "" id = "addForm">
+                <input name = "iden" value="2" style = "display : none;">
+                {% csrf_token %}
+            <div class="w3-half">
+                <p><strong>Mobile Number:</strong></p>
+                <p id="MobileNumber">
+                    <span id="MobileNumberDisplay" class="w3-input w3-border-black w3-round-xxlarge " style="height:40px;text-align: left;padding-top:8px;padding-left:5px;border:2px solid black;border-radius:15px;font-style:unset;">{{request.user.mobile}}</span>
+                    <input type="text" name="mobileInput" class="w3-input w3-border-black w3-round-xlarge" style="border:2px solid black;border-radius:15px; display:none" required pattern="[0-9]{10}" id="MobileNumberInput" style="display: none;">
+                </p>
+            </div>
+            
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-half">
+                <p><strong>Branch:</strong></p>
+                <p class="w3-input w3-border-black w3-round-xxlarge" style="border:2px solid black;border-radius:15px;" id="Branch">Computer Science And Engineering</p>
+            </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-half">
+                <p><strong>Address:</strong></p>
+                <p class="w3-input w3-border-black w3-round-xxlarge " style="border:2px solid black;border-radius:15px; width: 715px; max-width:715px; height: 80px;display:block;" id="Address">{{request.user.address}}</p>
+                <textarea type="text" name="addressInput" class="w3-input w3-border-black w3-round-xlarge" id="AddressInp" style="display: none;width: 715px; max-width:715px;height:80px;overflow-y: scroll;border:2px solid black;border-radius:15px;"></textarea>
+            </div>
+            <div class="w3-half"></div>
+            <div class="w3-row-padding">
+                <div class="w3-col" style="width:45%;">
+                    <p><strong>State/Union Teritory:</strong></p>
+                    <p class="w3-container " id="state" style="background: color darkcyan;height:40px;text-align: left;padding-top:8px;padding-left:5px;border:2px solid black;border-radius:15px;font-style:unset;width:300px">{{request.user.State}}</p>
+                    
+                        <div class="form-group col-md-4">
+                          <label for="inputState"></label>
+                          <select name="inputState" class="form-control w3-border-black w3-round-xxlarge" id="inputState" style="border:2px solid black;border-radius:15px; height:40px; display:none;" disabled>
+                                              <option value="SelectState">Select State</option>
+                                              <option value="Andra Pradesh">Andra Pradesh</option>
+                                              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                              <option value="Assam">Assam</option>
+                                              <option value="Bihar">Bihar</option>
+                                              <option value="Chhattisgarh">Chhattisgarh</option>
+                                              <option value="Goa">Goa</option>
+                                              <option value="Gujarat">Gujarat</option>
+                                              <option value="Haryana">Haryana</option>
+                                              <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                              <option value="Jharkhand">Jharkhand</option>
+                                              <option value="Karnataka">Karnataka</option>
+                                              <option value="Kerala">Kerala</option>
+                                              <option value="Madya Pradesh">Madya Pradesh</option>
+                                              <option value="Maharashtra">Maharashtra</option>
+                                              <option value="Manipur">Manipur</option>
+                                              <option value="Meghalaya">Meghalaya</option>
+                                              <option value="Mizoram">Mizoram</option>
+                                              <option value="Nagaland">Nagaland</option>
+                                              <option value="Orissa">Orissa</option>
+                                              <option value="Punjab">Punjab</option>
+                                              <option value="Rajasthan">Rajasthan</option>
+                                              <option value="Sikkim">Sikkim</option>
+                                              <option value="Tamil Nadu">Tamil Nadu</option>
+                                              <option value="Telangana">Telangana</option>
+                                              <option value="Tripura">Tripura</option>
+                                              <option value="Uttaranchal">Uttaranchal</option>
+                                              <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                              <option value="West Bengal">West Bengal</option>
+                                              <option disabled style="background-color:#aaa; color:#fff">UNION Territories</option>
+                                              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                              <option value="Chandigarh">Chandigarh</option>
+                                              <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                              <option value="Daman and Diu">Daman and Diu</option>
+                                              <option value="Delhi">Delhi</option>
+                                              <option value="Lakshadeep">Lakshadeep</option>
+                                              <option value="Pondicherry">Pondicherry</option>
+                                            </select>
+                        </div>
+                    
+                </div>
+
+                <div class="w3-col" style="width:32%;">
+                    <p><strong>District:</strong></p>
+                    <p class="w3-container " id="district" style="background: color darkcyan;height:40px;text-align: left;padding-top:8px;padding-left:5px;border:2px solid black;border-radius:15px;font-style:unset;width:300px">{{request.user.district}}</p>
+                    
+                    <div class="form-group col-md-4">
+                        <label for="inputDistrict"></label>
+                        <select class="form-control w3-border-black w3-round-xxlarge" name="districtInput" id="inputDistrict" style="border:2px solid black;border-radius:15px; height:40px;display:none;" disabled>
+                            <option value="">-- select one -- </option>
+                        </select>
+                      </div>
+                    
+                    
+                </div>
+                
+                <div class="w3-col" style="width:15%;">
+                    <p><strong>Pincode:</strong></p>
+                    <p id="Pincode">
+                        <span id="PincodeDisplay" class="w3-input w3-border-black w3-round-xxlarge" style="border:2px solid black;border-radius:15px; height:40px;">{{request.user.pincode}}</span>
+                        <input type="text" name="pincodeInput" class="w3-input w3-border-black w3-round-xlarge" required pattern="[0-9]{6}" id="PincodeInput" style="border:2px solid black;border-radius:15px;display: none;">
+                    </p>
+                </div>
+                <button id="saveFieldsButton" type="submit" style="display: none;margin-bottom:-20px;width:80px; " class="w3-display-bottomright"   >Save</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div  id="Performance" class="w3-container Tab" style="display: none;">
+        <h2 style="color: #757575;">Performance</h2>
+        <hr style="border: 0.5px dotted grey; margin-top: -3px;">
+        
+        {% for course in courses %}
+        <button class="w3-button w3-white" style="margin-top: 15px; width: 100px;margin-right: -7px; border-top: 5px solid #96c9c5; " onclick="Openbutton('course{{forloop.counter}}')">{{course.code}}</button>
+        {% endfor %}
+        {% for course in courses %}
+        <div class="w3-row course" style="margin-top:20px;" id="course{{forloop.counter}}">
+            <h1 style="margin-bottom:20px; margin-top:-10px;">{{course.name}}</h1>
+            <div class="w3-half" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <h2 style="margin-top:-5px;">Class Attendance</h2>
+                <div class="skill" data-percent="65">
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="number">
+                                {% for att in course.attendCards.all %}
+                                {% if att.student == request.user %}
+                                {{att.percentage}}%
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                        <defs>
+                            <linearGradient id="GradientColor{{forloop.counter}}">
+                                <stop offset="0%" stop-color="#e91e63" />
+                                <stop offset="100%" stop-color="#673ab7" />
+                            </linearGradient>
+                        </defs>
+                        <circle  cx="80" cy="80" r="70" stroke-linecap="round" style="fill:none; stroke:url(#GradientColor({{forloop.counter}})); stroke-width:20px; stroke-dasharray:472; stroke-dashoffset:472; animation: draw 2s linear forwards;"id="circle{{forloop.counter}}" />
+                    </svg>
+                </div>
+            </div>
+            <div class="w3-half" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <h2 style="margin-top:-5px;">Grade</h2>
+                <div class="skill1" data-percent="10">
+                    <div class="outer1">
+                        <div class="inner1">
+                            <div class="number1">
+                                {% for grade in course.grades.all %}
+                                {% if grade.student == request.user%}
+                                {{grade.grade}}
+                                {% endif %}
+                                {% endfor%}
+                            </div>
+                        </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                        <defs>
+                            <linearGradient id="GradientColors{{forloop.counter}}">
+                                <stop offset="0%" stop-color="#e91e63" />
+                                <stop offset="100%" stop-color="#673ab7" />
+                            </linearGradient>
+                        </defs>
+                        <circle  cx="80" cy="80" r="70" stroke-linecap="round" style="fill:none; stroke:url(#GradientColors({{forloop.counter}})); stroke-width:20px; stroke-dasharray:472; stroke-dashoffset:472; animation: draw1 2s linear forwards;"  id="circles{{forloop.counter}}"> 
+                    </svg>                        
+                </div>
+            </div>
+        </div> 
+        {% endfor %}
+        {% comment %} </div>   {% endcomment %}
+        
+        
+        
+        
+       
+        
+        
+               
+    </div>
+</div>
+</div>
+ <div class="w3-rest" style="background-color: #2c4776; height:920px;margin-top:25px;margin-left:20px; border-radius: 40px;">
+    <div class="w3-container w3-card-4" style="height:330px;margin-left:20px;margin-right:20px;margin-top:50px;padding-left:25px;padding-top:10px;border-radius: 40px; background-color: #8fc0c3;">
+    <h3>My Profile</h3>
+    <hr style="border: 0.5px dotted grey; margin-top: -3px;">
+    <div class="w3-container w3-center w3-display-container">
+        <div class="w3-dropdown-click">
+            <img src="{{ request.user.profilepic.url }}" id="profileImage" class="w3-circle w3-button-red" width="150px" height="150px" style="border-radius: 50%; margin-left:-17px; " onclick="myFunction()">
+            <div id="Demo" class="w3-dropdown-content w3-bar-block w3-card-4 w3-animate-zoom">
+                <a id="delete" class="w3-bar-item w3-button" onclick="Deleteprofile()">Delete</a>
+                <form id="profileform" method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input name = "iden" value="0" style = "display : none;">
+                <label for="fileInput" class="w3-bar-item w3-button" style="cursor: pointer;">New Profile</label>
+                <input type="file" name = "file"id="fileInput" style="display: none;" accept=".jpeg, .jpg, .png" onchange="updateProfileImage()">
+                <button type="submit" id="submitimg" style="display: none;"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <p class="w3-center" style="font-size: small;margin-top:20px;">Upload new profile pic here</p>
+    </div>
+    <div class="w3-display-container w3-card-4" style="background-color: #8fc0c3; height:330px;margin-left:20px;margin-right:20px;margin-top:30px;padding-left:25px;padding-top:10px;border-radius: 40px">
+        <h3>About Me</h3>
+    <hr style="border: 0.5px dotted grey; margin-top: -3px;">
+    <div class="w3-container">
+        <p class="w3-yellow" id="bioText" style="display: block; height:140px; width:auto;">{{request.user.bio}}</p>
+        <div class="edit-container" style="height: 175px;">
+            <p id="editbutton" class="w3-button w3-display-bottomright" onclick="editBio()"><i class="fa fa-pencil"></i></p>
+            <form id="profileform" method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input name = "iden" value="1" style = "display : none;">
+            <textarea type="text" name="bioin" id="editInput" class="edit-input w3-yellow" style="display: none; height:140px; width:auto;overflow-y: scroll;"></textarea>
+            <button id="saveButton" class="w3-display-bottomright" type="submit" style="display: none;" onclick="saveBio()">Save</button>
+            </form>
+        </div>
+    </div>
+        </div>
+        
+    </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'main/script/profile.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,1822 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      * {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: rgb(255, 255, 255);
+      }
+      .user-img {
+        width: 50px;
+        border-radius: 100%;
+        border: 1px solid #eee;
+      }
+      .sideBar {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        right: 0;
+        width: 360px;
+        background-color: #ff00004b;
+        transition: all 0.5s ease;
+      }
+      .main-content {
+        width: calc(100% - 360px);
+      }
+      .user {
+        background-color: #000;
+        padding: 1.08rem 0.8rem;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+      .user p {
+        color: rgb(255, 255, 255);
+        margin-left: 1rem;
+      }
+      .bold {
+        font-weight: 700;
+      }
+
+      .sideBar button a {
+        color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 0.8rem;
+      }
+      .sideBar button a i {
+        min-width: 50px;
+        text-align: center;
+        height: 40px;
+        border-radius: 12px;
+        line-height: 40px;
+      }
+      .handraise {
+        width: 100%;
+        color: rgba(127, 126, 126, 0.615);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        background-color: #ffffff;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      button {
+        width: 150px;
+        border-radius: 20px;
+        border: 1px solid #ffffff;
+        background-color: #000000;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 8px 25px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+      }
+      button:hover,
+      button:hover a {
+        cursor: pointer;
+        background-color: white;
+        color: black;
+      }
+      button:active {
+        transform: scale(0.9);
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+        box-sizing: border-box;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        text-rendering: optimizeLegibility;
+        font-size: 14px;
+        -ms-scroll-chaining: none;
+        overscroll-behavior: none;
+      }
+      html:not(input) {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        font-family: sans-serif;
+      }
+      body {
+        color: #000;
+        height: 100%;
+        margin: 0 auto;
+        font-weight: 400;
+        font-size: 14px;
+        width: 100%;
+        -ms-scroll-chaining: none;
+        overscroll-behavior: none;
+      }
+      div[role="button"]:focus {
+        outline: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+        background: #fff;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cfcfcf;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fff;
+      }
+      * {
+        -webkit-touch-callout: none;
+      }
+      @media screen and (max-width: 1024px) {
+        #__next,
+        html {
+          height: 100%;
+        }
+      }
+      .textClamp {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .chevronLeft {
+        background-image: url(https://assetscdn1.paytm.com/movies_new/_next/static/media/chevron_left.0c505418.svg);
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 28px;
+        width: 28px;
+        position: relative;
+      }
+      @media screen and (min-width: 1025px) {
+        .foundationInnerDesktop {
+          max-width: 1260px;
+          width: 100%;
+          margin: 0 auto;
+          box-sizing: border-box;
+        }
+      }
+      :root {
+        --vivid-04-strong: #fed533;
+        --background-positive-strong: #21c179;
+        --background-neutral-inverse: #fff;
+        --background-positive-weak: #e3f6ec;
+        --background-neutral-medium: #7e7e7e;
+        --background-offset-weak: #f5f9fe;
+        --background-primary-strong: #00b8f5;
+        --text-positive-strong: #21c179;
+        --text-neutral-variant: #101010;
+        --text-neutral-medium: #7e7e7e;
+        --text-primary-strong: #00b8f5;
+        --text-neutral-inverse: #fff;
+        --text-neutral-weak: #cacaca;
+        --border-neutral-weak: #e0e0e0;
+      }
+      .SeatLayoutSuperContainer,
+      .SeatLayoutSuperContainer .SeatsWrapper ul li {
+        display: flex;
+      }
+      .SeatLayoutSuperContainer {
+        flex-direction: column;
+        overflow: auto;
+        width: 100%;
+        max-width: 1260px;
+        margin: 0 auto;
+        padding-bottom: 34px;
+        flex-grow: 1;
+      }
+      .SeatLayoutSuperContainer::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+      .SeatLayoutSuperContainer .StudentHeading {
+        text-align: center;
+        padding: 34px 0 20px;
+        font-size: 16px;
+        color: #101010;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: -0.08px;
+        letter-spacing: -0.32px;
+        position: relative;
+        width: 100%;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper {
+        margin: 0 auto;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li {
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 8px;
+        width: 100%;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li:last-of-type {
+        margin-bottom: 0;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .SeatRowWrapper {
+        display: flex;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .SeatRowWrapper span i {
+        padding-top: 10px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .SeatLayoutSuperContainer
+        .SeatsWrapper
+        ul
+        li
+        .SeatRowWrapper
+        span
+        i:before {
+        transition: color 0.2s;
+        color: #00b8f5;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .blankSeat {
+        visibility: hidden;
+        width: 31.5px;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .Selectedseat {
+        background: #00b8f5;
+        color: white;
+        border: 1px solid transparent;
+        align-items: center;
+        justify-content: center;
+        cursor: not-allowed;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .Raisehand {
+        background: red;
+        color: white;
+        border: 1px solid transparent;
+        align-items: center;
+        justify-content: center;
+        cursor: not-allowed;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .AbsentSeat {
+        background: var(--border-neutral-weak);
+        color: var(--text-neutral-weak);
+        border: 1px solid transparent;
+        align-items: center;
+        justify-content: center;
+        cursor: not-allowed;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .AbsentSeat:hover {
+        background: hsla(0, 0%, 6%, 0.13);
+        color: var(--text-neutral-weak);
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li span {
+        border: 1.5px solid #00b8f5;
+        flex-shrink: 0;
+        border-radius: 4px;
+        height: 28px;
+        width: 28px;
+        margin-right: 8px;
+        display: block;
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 25px;
+        text-align: center;
+        color: var(--text-primary-strong);
+        cursor: pointer;
+        transition: background 0.5s;
+        box-sizing: border-box;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li span:hover {
+        background: #00b8f5;
+        color: var(--background-neutral-inverse);
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li span i:hover:before {
+        color: #fff;
+      }
+      .FixedSeatingDesktop_layoutCon__HvWWe {
+        display: flex;
+        flex-direction: column;
+        width: 1260px;
+        max-width: 100%;
+      }
+      .SeatWrapper {
+        position: relative;
+      }
+      @-webkit-keyframes FixedSeatingDesktop_easeIn__A1GTT {
+        to {
+          background-color: #00b8f5;
+        }
+      }
+      @keyframes FixedSeatingDesktop_easeIn__A1GTT {
+        to {
+          background-color: #00b8f5;
+        }
+      }
+      .HeadWrapper {
+        flex-shrink: 0;
+        padding-right: 0;
+      }
+      .HeadWrapper .HeadContents {
+        background-color: #6e7c8a;
+        display: flex;
+        color: rgba(0, 0, 0, 0.556);
+        align-items: center;
+        justify-content: center;
+        padding: 8px 0;
+        height: 80px;
+        box-sizing: border-box;
+      }
+      .HeadWrapper .HeadContents > div {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .HeadWrapper .HeadContents > div .ExitClass {
+        position: absolute;
+        left: 0;
+        display: flex;
+        align-items: center;
+      }
+      .HeadWrapper .HeadContents i {
+        flex-shrink: 0;
+        display: block;
+        margin-right: 16px;
+        height: 31px;
+      }
+      .HeadWrapper .HeadContents .SeatLayoutHeaderDesktop_movDetail__qdFzb {
+        overflow: hidden;
+        text-align: center;
+        width: 100%;
+        width: 920px;
+        margin: 0 auto;
+      }
+      .HeadWrapper .HeadContents .SeatLayoutHeaderDesktop_movDetail__qdFzb h2 {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.556);
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: -0.41px;
+      }
+      .HeadWrapper .HeadContents .SeatLayoutHeaderDesktop_movDetail__qdFzb h3 {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.556);
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.08px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .SeatsWrapper ul li .SeatRowWrapper {
+        justify-content: center;
+        align-items: center;
+      }
+      .SeatsWrapper ul li .SeatRowWrapper .AbsentSeat,.SeatsWrapper ul li .SeatRowWrapper .Selectedseat,.SeatsWrapper ul li .SeatRowWrapper .Raisehand,
+      .SeatsWrapper ul li .SeatRowWrapper .PeopleAttended {
+        width: 50px;
+        height: 50px;
+        font-size: 15px;
+      }
+      #prof {
+        width: 150px;
+        height: 150px;
+        border-width: 0;
+      }
+      .image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+      }
+      i:hover {
+        cursor: pointer;
+      }
+      h2:hover,
+      h3:hover {
+        cursor: text;
+      }
+      .input-group {
+        position: absolute;
+        right: 8px;
+        width: 25px;
+        height: 40px;
+        background-color: #fff8;
+        box-shadow: 0 0.1rem 0.4rem #0002;
+        padding: 0 0.8rem;
+        border-radius: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.2s;
+      }
+      .input-group img {
+        width: 1.8rem;
+        height: 1.8rem;
+        cursor: pointer;
+        position: absolute;
+        right: 0px;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 0 0.5rem 0 0.3rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        margin-right: 10px;
+      }
+      table {
+        width: 150px;
+        color: black;
+      }
+      table,
+      th,
+      td {
+        border-collapse: collapse;
+        padding: 1rem;
+        height: 40px;
+        text-align: left;
+      }
+
+      thead th {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: #d5d1de;
+        cursor: pointer;
+        text-transform: capitalize;
+        display: none;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #0000000b;
+      }
+
+      tbody tr {
+        --delay: 0.1s;
+        transition: 0.5s ease-in-out var(--delay), background-color 0s;
+      }
+
+      tbody tr.hide {
+        opacity: 0;
+        display: none;
+        transform: translateX(100%);
+      }
+      tbody tr.hide .right{
+        display: none;
+      }
+      tbody tr:hover {
+        background-color: #fff6 !important;
+      }
+
+      tbody tr td {
+        transition: 0.2s ease-in-out;
+      }
+
+      tbody tr.hide td {
+        padding: 0;
+        font: 0 / 0 sans-serif;
+        transition: 0.2s ease-in-out 0.5s;
+      }
+      .forTable {
+        display: none;
+        height: 200px;
+        width: 160px;
+        overflow-y: scroll;
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        background-color: white;
+      }
+      .forSearch {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        z-index: 5;
+      }
+      .chatbot {
+        font-family: "Poppins", sans-serif;
+        width: 360px;
+        background: #fff;
+        overflow: hidden;
+        height: 100%;
+        opacity: 1;
+        pointer-events: auto;
+        transform-origin: bottom right;
+        box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+          0 32px 64px -4px rgba(0, 0, 0, 0.5);
+        transition: all 0.1s ease;
+      }
+      .chatbot header {
+        padding: 16px 0;
+        position: relative;
+        text-align: center;
+        color: #fff;
+        height: 70px;
+        background: #000000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      header h2 {
+        font-size: 1.4rem;
+        position: absolute;
+        left: 10px;
+        top: 30%;
+        cursor:default;
+      }
+      .chatbot .chatbox {
+        height: 500px;
+        overflow-y: scroll;
+        padding: 30px 20px 100px;
+      }
+      .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+        width: 6px;
+      }
+      .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+        background: #fff;
+        border-radius: 25px;
+      }
+      .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 25px;
+      }
+      .chatbox .chat {
+        display: flex;
+        list-style: none;
+      }
+      .chatbox .outgoing {
+        margin: 20px 0;
+        justify-content: flex-end;
+      }
+      .chatbox .incoming span {
+        width: 32px;
+        height: 32px;
+        color: #fff;
+        cursor: default;
+        text-align: center;
+        line-height: 32px;
+        align-self: flex-end;
+        background: #000000;
+        border-radius: 4px;
+        margin: 0 10px 7px 0;
+      }
+      .chatbox .chat p {
+        font-family: "Poppins", sans-serif;
+        white-space: pre-wrap;
+        padding: 12px 16px;
+        border-radius: 10px 10px 0 10px;
+        max-width: 75%;
+        color: #fff;
+        font-size: 0.95rem;
+        background: #000000;
+      }
+      .chatbox .incoming p {
+        border-radius: 10px 10px 10px 0;
+      }
+      .chatbox .chat p.error {
+        color: #721c24;
+        background: #f8d7da;
+      }
+      .chatbox .incoming p {
+        color: #000;
+        background: #f2f2f2;
+      }
+      .chatbot .chat-input {
+        display: flex;
+        gap: 5px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        padding: 3px 20px;
+        border-top: 1px solid #ddd;
+      }
+      .chat-input textarea {
+        height: 55px;
+        width: 100%;
+        border: none;
+        outline: none;
+        resize: none;
+        max-height: 180px;
+        padding: 15px 15px 15px 0;
+        font-size: 0.95rem;
+      }
+      .chat-input span {
+        align-self: flex-end;
+        color: #724ae8;
+        cursor: pointer;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        visibility: hidden;
+        font-size: 1.35rem;
+      }
+      .chat-input textarea:valid ~ span {
+        visibility: visible;
+      }
+      .tablink {
+        background-color: #070707;
+        padding: 10px 15px;
+        width: 115px;
+        cursor: pointer;
+      }
+      .tabcontent {
+        display: none;
+      }
+      #everyone {
+        display: block;
+      }
+      .message-content {
+        display: flex;
+        flex-direction: column;
+      }
+      .name-label {
+        font-size: 10px;
+      }
+      .right {
+        flex: 5%;
+        position: absolute;
+        right: 15px ;
+      }
+      .right a {
+        display: block;
+        background-color: rgb(255, 255, 255);
+        list-style-type: none;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: rgba(0, 0, 0, 0.556);
+        text-align: center;
+        font-size: 14px;
+        padding: 10px 10px;
+        border-radius: 20px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .right a:hover {
+        transition: 0.5s;
+        background-color: rgba(0, 0, 0, 0.556);
+        color: rgb(255, 255, 255);
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        right: 0;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 100px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+      .dropdown-content a {
+        color: rgba(0, 0, 0, 0.556);
+        padding: 12px 10px;
+        text-decoration: none;
+        border-radius: 0;
+        display: block;
+      }
+      .dropdown-content a:hover {
+        background-color: rgba(0, 0, 0, 0.556);
+        color: white;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .SeatLayoutSuperContainer .SeatsWrapper ul li .blankSeat.teacherpre2 {
+        display: none;
+      }
+      #endclass:hover{
+        color:white;
+      }
+      #foot{
+        width:calc( 100% - 360px);
+        background-color: rgb(243, 101, 101);
+        height: 70px;
+        position: absolute;
+        bottom: 0;
+        left:0;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="{% url 'courseHome' course.id %}" id="endClassurl" style="display:none"></a>
+    <div class="sideBar">
+      <div class="user" id="user">
+        <img src="{{ request.user.profilepic.url }}" alt="me" class="user-img" />
+        <div>
+          <p class="bold">{{request.user.first_name}} {{request.user.last_name}}</p>
+          <p>{{request.user.enrollment}}</p>
+        </div>
+      </div>
+      <div class="handraise" id="handraise">
+        <button onclick="send_raise()" style="padding-left: 10px; padding-right: 10px">
+            <i class="fa fa-hand-o-up" style="font-size: x-large"></i>
+            <span class="nav-item">Raise Hand</span>
+        </button>
+      </div>
+      <div id="chatbot">
+        <div class="chatbot">
+          <header>
+            <h2>Chatbox</h2>
+            <div class="right">
+              <div class="dropdown">
+                <a id="chatWith">With Everyone</a>
+                <div class="dropdown-content">
+                  <a onclick="openTab('everyone')">Everyone</a>
+                  <a onclick="openTab('teacher')">Teacher</a>
+                  {% if request.user.role.name == "student" %}
+                  <a onclick="openTab('anonymous')">Anonymous</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </header>
+          <div id="everyone" class="tabcontent">
+            <ul class="chatbox">
+              <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <div class="message-content">
+                  <p>Hi there 👋<br />Your messages appears to everyone.</p>
+                  <pre class="name-label">System Generated</pre>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="teacher" class="tabcontent">
+            <ul class="chatbox">
+              <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <div class="message-content">
+                  <p>Hello, you can message seperately to Teacher.</p>
+                  <pre class="name-label">System Generated</pre>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="anonymous" class="tabcontent">
+            <ul class="chatbox">
+              <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <div class="message-content">
+                  <p>You can send the messages as an Anonymous person.</p>
+                  <pre class="name-label">System Generated</pre>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="chat-input">
+            <textarea
+              placeholder="Enter a message..."
+              spellcheck="false"
+              required
+            ></textarea>
+            <span id="send-btn" class="material-symbols-rounded">send</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="container">
+        <div class="ClassWrapper">
+          <div class="HeadWrapper" id="headwrap">
+            <div class="HeadContents">
+              <div class="foundationInnerDesktop">
+                <div class="ExitClass">
+                  <i class="chevronLeft"></i>
+                </div>
+                <div class="SeatLayoutHeaderDesktop_movDetail__qdFzb">
+                  <h2 class="textClamp">{{course.code}}</h2>
+                  <h3>{{room.end_datetime.date}}  at GB-104</h3> <!-- {{room.end_datetime.date}}-->
+                </div>
+                <div class="forSearch">
+                  <div class="input-group">
+                    <input
+                      type="search"
+                      id="search-input"
+                      placeholder="Search Data..."
+                    />
+                    <img id="search" src="{% static '/main/images/search.png'  %}" alt="" />
+                  </div>
+                  <div class="forTable">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>
+                            Enrollment <span class="icon-arrow">&UpArrow;</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for stu in room.students_online.all %}
+                        <tr>
+                          <td class="22114080" style="display: none;">{{stu.enrollment}}</td>
+                          <td>
+                            <div class="right 22114080">
+                              <div class="dropdown">
+                                <a style="position: absolute;color: black; top: -35px; left: -135px;font-size: 18px;" id="chatWith">{{stu.enrollment}}</a>
+                                <div class="dropdown-content" style="position: absolute; right: 0px;width: 80px;">
+                                  <a href="#" id="overide" data-enroll="{{stu.enrollment}}">Overide</a>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="PeopleAttended" style="position: absolute; top: 85px;right: 380px;font-family: monospace;">People Attended:<span id="user-hello" style="font-family: monospace;">0</span>/{{max}}
+            {% if request.user.role.name == "teacher" %}
+             <form id="endClassForm" method = "POST" action="">
+              {% csrf_token %}
+            <input name = "iden" value ="0" style="display : none;">
+            <button id="endclass" type = "submit" style="background-color:red;padding:15px 10px;width:100px;float:right;" onclick = "redirectAll()">End Class</button>
+            
+          </form> 
+          {% endif %}
+          </div>
+          
+          <div class="SeatLayoutSuperContainer">
+            <div class="FixedSeatingDesktop_layoutCon__HvWWe">
+              <div class="SeatsWrapper">
+                <ul>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat teacherpre2"></span>
+                      <span class="blankSeat teacherpre2"></span>
+                      <span class="blankSeat teacherpre2"></span>
+                      <span class="blankSeat teacherpre2"></span>
+                      <span class="blankSeat teacherpre2"></span>
+                        <teacherpre style="justify-content:left;text-align:left;width: 220px;">
+                          <strong style="padding: 5px;">Teacher Is Absent</strong><b aria-hidden="true"style="padding:10px;font-size:20px; cursor: pointer;" onclick="teacherabs()">&times;</b>
+                        </teacherpre>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <div class="SeatWrapper">
+                        <span id="prof" class="PeopleAttended"
+                          ><img
+                            src="{% static '/main/images/prof.png' %}"
+                            alt="Admin Icon"
+                            class="image"
+                        /></span>
+                      </div>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <div class="StudentHeading">STUDENTS</div>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <div class="SeatWrapper 1">
+                        <span class="AbsentSeat 1" id="1" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 2">
+                        <span class="AbsentSeat 2" id="2" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 3">
+                        <span class="AbsentSeat 3" id="3" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 4">
+                        <span class="AbsentSeat 4" id="4" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 5">
+                        <span class="AbsentSeat 5" id="5" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 6">
+                        <span class="AbsentSeat 6" id="6" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 7">
+                        <span class="AbsentSeat 7" id="7" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 8">
+                        <span class="AbsentSeat 8" id="8" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 9">
+                        <span class="AbsentSeat 9" id="9" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 10">
+                        <span class="AbsentSeat 10" id="10" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 11">
+                        <span class="AbsentSeat 11" id="11" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 12">
+                        <span class="AbsentSeat 12" id="12" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 13">
+                        <span class="AbsentSeat 13" id="13" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 14">
+                        <span class="AbsentSeat 14" id="14" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 15">
+                        <span class="AbsentSeat 15" id="15" data-seat="1"> </span>
+                      </div>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <div class="SeatWrapper 1">
+                        <span class="AbsentSeat 1" id="16" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 2">
+                        <span class="AbsentSeat 2" id="17" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 3">
+                        <span class="AbsentSeat 3" id="18" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 4">
+                        <span class="AbsentSeat 4" id="19" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 5">
+                        <span class="AbsentSeat 5" id="20" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 6">
+                        <span class="AbsentSeat 6" id="21" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 7">
+                        <span class="AbsentSeat 7" id="22" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 8">
+                        <span class="AbsentSeat 8" id="23" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 9">
+                        <span class="AbsentSeat 9" id="24" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 10">
+                        <span class="AbsentSeat 10" id="25" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 11">
+                        <span class="AbsentSeat 11" id="26" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 12">
+                        <span class="AbsentSeat 12" id="27" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 13">
+                        <span class="AbsentSeat 13" id="28" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 14">
+                        <span class="AbsentSeat 14" id="29" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 15">
+                        <span class="AbsentSeat 15" id="30" data-seat="1"> </span>
+                      </div>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <div class="SeatWrapper 1">
+                        <span class="AbsentSeat 1" id="31" data-seat="1" </span>
+                      </div>
+                      <div class="SeatWrapper 2">
+                        <span class="AbsentSeat 2" id="32" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 3">
+                        <span class="AbsentSeat 3" id="33" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 4">
+                        <span class="AbsentSeat 4" id="34" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 5">
+                        <span class="AbsentSeat 5" id="35" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 6">
+                        <span class="AbsentSeat 6" id="36" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 7">
+                        <span class="AbsentSeat 7" id="37" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 8">
+                        <span class="AbsentSeat 8" id="38" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 9">
+                        <span class="AbsentSeat 9" id="39" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 10">
+                        <span class="AbsentSeat 10" id="40" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 11">
+                        <span class="AbsentSeat 11" id="41" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 12">
+                        <span class="AbsentSeat 12" id="42" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 13">
+                        <span class="AbsentSeat 13" id="43" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 14">
+                        <span class="AbsentSeat 14" id="44" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 15">
+                        <span class="AbsentSeat 15" id="45" data-seat="1"> </span>
+                      </div>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <div class="SeatWrapper 1">
+                        <span class="AbsentSeat 1" id="46" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 2">
+                        <span class="AbsentSeat 2" id="47" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 3">
+                        <span class="AbsentSeat 3" id="48" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 4">
+                        <span class="AbsentSeat 4" id="49" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 5">
+                        <span class="AbsentSeat 5" id="50" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 6">
+                        <span class="AbsentSeat 6" id="51" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 7">
+                        <span class="AbsentSeat 7" id="52" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 8">
+                        <span class="AbsentSeat 8" id="53" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 9">
+                        <span class="AbsentSeat 9" id="54" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 10">
+                        <span class="AbsentSeat 10" id="55" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 11">
+                        <span class="AbsentSeat 11" id="56" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 12">
+                        <span class="AbsentSeat 12" id="57" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 13">
+                        <span class="AbsentSeat 13" id="58" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 14">
+                        <span class="AbsentSeat 14" id="59" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 15">
+                        <span class="AbsentSeat 15" id="60" data-seat="1"> </span>
+                      </div>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="SeatRowWrapper">
+                      <span class="blankSeat"></span>
+                      <div class="SeatWrapper 1">
+                        <span class="AbsentSeat 1" id="61" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 2">
+                        <span class="AbsentSeat 2" id="62" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 3">
+                        <span class="AbsentSeat 3" id="63" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 4">
+                        <span class="AbsentSeat 4" id="64" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 5">
+                        <span class="AbsentSeat 5" id="65" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 6">
+                        <span class="AbsentSeat 6" id="66" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 7">
+                        <span class="AbsentSeat 7" id="67" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 8">
+                        <span class="AbsentSeat 8" id="68" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 9">
+                        <span class="AbsentSeat 9" id="69" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 10">
+                        <span class="AbsentSeat 10" id="70" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 11">
+                        <span class="AbsentSeat 11" id="71" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 12">
+                        <span class="AbsentSeat 12" id="72" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 13">
+                        <span class="AbsentSeat 13" id="73" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 14">
+                        <span class="AbsentSeat 14" id="74" data-seat="1"> </span>
+                      </div>
+                      <div class="SeatWrapper 15">
+                        <span class="AbsentSeat 15" id="75" data-seat="1"> </span>
+                      </div>
+                      <span class="blankSeat"></span>
+                      <span class="blankSeat"></span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="foot">
+                <button onclick="sendSeat()"id="selectseat" style="position: absolute;top: 10px;right: 15px; padding: 15px 10px;;">Select Seat</button><b aria-hidden="true"style="position: absolute;top:10px;right: -10px;; padding:10px;font-size:20px; cursor: pointer;" onclick="Close()">&times;</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ id|json_script:"room-name" }}
+    {{ request.user.first_name|json_script:"username" }}
+    {{ request.user.enrollment|json_script:"enroll" }}
+    {{ request.user.role.name|json_script:"role" }}
+    {{ request.user.email|json_script:"email" }}
+     {{ datain |json_script:"datain" }} 
+     {{ seatsin |json_script:"seatsin" }}
+     {{ seatU.selected |json_script:"seat_selec" }}
+     {{ seatU.raise_hand | json_script:"raise_hand"}}
+    <script>
+      var raiseHand = JSON.parse(document.getElementById('raise_hand').textContent);
+      //console.log(raiseHand);
+      
+      var i=0;
+      const enroll1 = JSON.parse(document.getElementById('enroll').textContent);
+      const enroll = enroll1.slice(-2);
+      const seat_selec = JSON.parse(document.getElementById('seat_selec').textContent);
+      //console.log(seat_selec);
+      var nand=seat_selec;
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        const username = JSON.parse(document.getElementById('username').textContent);
+        const role = JSON.parse(document.getElementById('role').textContent);
+        const email = JSON.parse(document.getElementById('email').textContent);
+      //console.log("hi0");
+      var myArray;
+      var myArray2;
+      
+        // This code will run after the HTML is fully loaded.
+         myArray = JSON.parse(document.getElementById('datain').textContent);
+        console.log(myArray);
+        myArray2 = JSON.parse(myArray);
+        console.log(typeof myArray2);
+        console.log(myArray2.length)
+       
+       // console.log("hi");
+    
+    console.log("hi");
+    
+
+    
+    //console.log("hi2");
+
+
+      //window.onload = loadMessages; 
+      
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            +'/ws/room/'
+            +roomName
+            +'/'
+        );
+       // socket.addEventListener('open', (event) => {
+          
+      //    const initialMessage = {
+      //        type: 'initial_message',
+      //        content: 'Hello, server!',
+     //     };
+          
+        //  socket.send(JSON.stringify(initialMessage));
+     // });
+        chatSocket.onmessage = function(e){
+            const data = JSON.parse(e.data);
+            console.log(data);
+            var count = "0";
+            if(data.hasOwnProperty('count')){
+                count = (data.count)
+                document.getElementById('user-hello').innerHTML = count
+            }
+            
+            var message;
+            var i1;
+            if(data.hasOwnProperty('message')){
+              message = (data.message);
+              usernamein = (data.username);
+              i1 = (data.i);
+              console.log(i1);
+              if(username!=usernamein){
+                console.log(message);
+                if(i1 == "0"){
+                  chatbox[0].appendChild(createChatLi2(message, usernamein));
+                  chatbox[0].scrollTo(0, chatbox[0].scrollHeight);
+                }else{
+                  if(i1 == "1"){
+                    if(role == "teacher"){
+                      chatbox[1].appendChild(createChatLi2(message, usernamein));
+                      chatbox[1].scrollTo(0, chatbox[i].scrollHeight);
+                      var tabs = document.getElementsByClassName("tabcontent");
+                      for (let j = 0; j < tabs.length; j++) {
+                        tabs[i].style.display = "none";
+                      }
+                      tabs[1].style.display = "inline-block";
+                      var chatWit= document.getElementById('chatWith');
+                      chatWit.innerHTML='With Teacher';
+                    }
+                    
+                  }else{
+                    chatbox[0].appendChild(createChatLi2(message, "anonymous"));
+                    chatbox[0].scrollTo(0, chatbox[0].scrollHeight);
+
+                  }
+                }
+                
+              }
+              
+            }
+             if(data.hasOwnProperty('end')){
+              if(role!="teacher"){
+                var link = document.getElementById("endClassurl");
+               link.click();
+              }
+            } 
+            if(data.hasOwnProperty('raise_hand')){
+              //console.log(data);
+              var id_seat = (data.seat);
+              console.log("seat id is");
+              console.log(id_seat);
+              var rhd = (data.raise_hand);
+              var seator = document.getElementById(`${id_seat}`);
+                if(rhd == "up"){
+                  seator.classList.remove('PeopleAttended');
+                
+                  seator.classList.add('Raisehand');
+
+                }else{
+                  seator.classList.remove('Raisehand');
+                  seator.classList.add('PeopleAttended');
+
+                }
+                
+                
+              }
+
+
+
+            else{
+              if(data.hasOwnProperty('seat')){
+                console.log(data);
+                
+                var seatid = (data.seat)
+                var seator = document.getElementById(`${seatid}`);
+                if( (data.enroll)!="0" ){
+  
+                  seator.innerHTML = (data.enroll)
+                }
+                seator.classList.remove('Selectedseat');
+                seator.classList.remove('AbsentSeat');
+                seator.classList.add('PeopleAttended');
+                foot.style.display="none";
+              }
+
+            }
+            if(data.hasOwnProperty('over')){
+              var enc = (data.enroll);
+              if(enroll1 == enc){
+                alert("your attendence is ovveriden");
+              }
+            }
+            if(data.hasOwnProperty('he_left')){
+              console.log("he left data");
+              console.log(data);
+              var st_id = (data.seat_id_name);
+              if(st_id!="0"){
+              var seator = document.getElementById(`${st_id}`);
+              seator.innerHTML = " "
+              seator.classList.remove('Selectedseat');
+              seator.classList.add('AbsentSeat');
+              seator.classList.remove('PeopleAttended');
+
+              }
+              
+
+
+            }
+            
+            
+
+        }
+        
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var searchInput = document.getElementById("search-input");
+        var inpgrp = document.getElementsByClassName("input-group")[0];
+        var table = document.querySelector(".forTable");
+        searchInput.addEventListener("mouseleave", function (event) {
+          if(searchInput.value.length>0){
+            table.style.display = "inline-block";
+            inpgrp.style.width="200px";
+          }
+          else{
+          table.style.display = "none";
+          inpgrp.style.width="25px";
+          }
+        });
+        inpgrp.addEventListener("mouseenter", function (event) {
+          table.style.display = "inline-block";
+          inpgrp.style.width="200px";
+        });
+      });
+      const search = document.querySelector(".input-group input"),
+        table_rows = document.querySelectorAll("tbody tr"),
+        table_headings = document.querySelectorAll("thead th");
+      search.addEventListener("input", searchTable);
+
+      function searchTable() {
+        table_rows.forEach((row, i) => {
+          let table_data = row.textContent.toLowerCase(),
+            search_data = search.value.toLowerCase();
+
+          row.classList.toggle("hide", table_data.indexOf(search_data) < 0);
+          row.style.setProperty("--delay", i / 25 + "s");
+        });
+
+        document
+          .querySelectorAll("tbody tr:not(.hide)")
+          .forEach((visible_row, i) => {
+            visible_row.style.backgroundColor =
+              i % 2 == 0 ? "transparent" : "#0000000b";
+          });
+      }
+      function setHeights(){
+        var user = document.getElementById("user");
+        var headwrap = document.getElementById("headwrap");
+        var handraise = document.getElementById("handraise");
+        var chatbox = document.getElementsByClassName("tabcontent");
+        var chathead = document.querySelector("header");
+        var chatinp = document.getElementsByClassName("chat-input");
+        var chatbot = document.getElementById("chatbot");
+        var userHeight = headwrap.offsetHeight;
+        var handraiseHeight = handraise.offsetHeight;
+        var chatheadHeight = chathead.offsetHeight;
+        var chatinpHeight = chatinp[0].offsetHeight;
+        var heighto = window.innerHeight;
+        var finalHeight = heighto - userHeight - handraiseHeight;
+        var newHeight = finalHeight + "px";
+        headwrap.style.height = userHeight + "px";
+        chatbot.style.height = newHeight;
+        let chatboxfinal = finalHeight - chatheadHeight - chatinpHeight;
+        for (let k = 0; k < chatbox.length; k++) {
+          chatbox[k].style.height = chatboxfinal;
+        }
+      }
+      setHeights();
+      window.addEventListener('resize', setHeights);
+     
+      
+      function openTab(tabName) {
+        var tabcontent;
+        var chatWith = document.getElementById('chatWith');
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+        if(tabName=='everyone'){
+          i=0;
+          chatWith.innerHTML='With Everyone';
+        }
+        if(tabName=='teacher'){
+          i=1;
+          chatWith.innerHTML='With Teacher';
+        }
+        if(tabName=='anonymous'){
+          i=2;
+          chatWith.innerHTML='As Anonymous';
+        }
+      }
+      var chatbox=[];
+      chatbox = document.getElementsByClassName("chatbox");
+      const chatInput = document.querySelector(".chat-input textarea");
+      const sendChatBtn = document.querySelector(".chat-input span");
+
+      let userMessage = null;
+     
+      const inputInitHeight = chatInput.scrollHeight;
+
+      const createChatLi = (message) => {
+        const chatLi = document.createElement("li");
+        chatLi.classList.add("chat", "outgoing");
+        let chatContent =`<p style="word-wrap: break-word;overflow-wrap: break-word;"></p>`
+        chatLi.innerHTML = chatContent;
+        chatLi.querySelector("p").textContent = message;
+        return chatLi;
+      };
+      const createChatLi2 = (message, UserName) => {
+        const chatLi = document.createElement("li");
+        chatLi.classList.add("chat", "incoming");
+        let chatContent =`<span class="material-symbols-outlined">smart_toy</span><div class="message-content"><p style="word-wrap: break-word;overflow-wrap: break-word; width:280px;"></p><pre class="name-label">System Generated</pre></div>`;
+        chatLi.innerHTML = chatContent;
+        chatLi.querySelector("p").textContent = message;
+        chatLi.querySelector("pre").textContent = UserName;
+        return chatLi;
+      };
+      const generateResponse = (chatElement) => {
+        const API_URL = "https://api.openai.com/v1/chat/completions";
+        const messageElement = chatElement.querySelector("p");
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: userMessage }],
+          }),
+        };
+        fetch(API_URL, requestOptions)
+          .then((res) => res.json())
+          .then((data) => {
+            messageElement.textContent = data.choices[0].message.content.trim();
+          })
+          .catch(() => {
+            messageElement.classList.add("error");
+            messageElement.textContent =
+              "Oops! Something went wrong. Please try again.";
+          })
+          .finally(() => chatbox[i].scrollTo(0, chatbox[i].scrollHeight));
+      };
+
+      const handleChat = () => {
+        userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+        chatSocket.send(JSON.stringify({
+          'message':userMessage,
+          'username':username,
+          'i':i,
+          'room':roomName,
+          'email':email
+        }));
+        //console.log(userMessage);
+        chatInput.value = "";
+        chatInput.style.height = `${inputInitHeight}px`;
+        chatbox[i].appendChild(createChatLi(userMessage));
+        chatbox[i].scrollTo(0, chatbox[i].scrollHeight);
+      };
+
+      chatInput.addEventListener("input", () => {
+        chatInput.style.height = `${inputInitHeight}px`;
+        chatInput.style.height = `${chatInput.scrollHeight}px`;
+      });
+
+      chatInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          handleChat();
+        }
+      });
+
+      sendChatBtn.addEventListener("click", handleChat);
+
+      function teacherabs(){
+        const teacherpre=document.querySelector('teacherpre');
+        const teacherpre2=document.getElementsByClassName("teacherpre2");
+        teacherpre.style.display='none';
+        for (i = 0; i < teacherpre2.length; i++) {
+          teacherpre2[i].style.display = "inline-block";
+        }
+      }
+
+      
+if(role == teacher){
+  document.getElementById('endClassForm').addEventListener('submit', function(event) {
+        
+    event.preventDefault();
+    chatSocket.send(JSON.stringify({
+      'end':"endclass",
+      
+    }));
+    this.submit();
+    
+
+    
+});
+
+}
+var m=0;
+        
+        const foot = document.getElementById('foot');
+        const AbsentSeat = document.querySelectorAll(".AbsentSeat");
+        AbsentSeat.forEach((seat) => {
+          seat.addEventListener("click", (e) => {
+            if(role == "student"){
+
+            
+            if(m==0){
+            nand = e.target.id;
+            
+            console.log(nand);
+            seat.classList.remove('AbsentSeat');
+            seat.classList.add('Selectedseat');
+            foot.style.display="block";
+            m++;
+            }
+          }
+          });
+        });
+        function Close(){
+            var seator = document.getElementById(`${nand}`);
+            seator.classList.remove('Selectedseat');
+            seator.classList.add('AbsentSeat');
+            foot.style.display="none";
+            m--;
+            }
+      
+    for(var z=0;z<myArray2.length;z++){
+      //console.log("hi");
+      var mes = myArray2[z].content;
+      var user = myArray2[z].user;
+      var iden = myArray2[z].i;
+      var first_name = myArray2[z].first_name;
+      console.log(iden)
+      if(user == email){
+        chatbox[iden].appendChild(createChatLi(mes));
+        chatbox[iden].scrollTo(0, chatbox[iden].scrollHeight);
+      }else{
+        if(iden == "0"){
+          chatbox[iden].appendChild(createChatLi2(mes,first_name));
+          chatbox[iden].scrollTo(0, chatbox[iden].scrollHeight);
+        }else{
+          if(iden == "1"){
+            if(role == "teacher"){
+              chatbox[iden].appendChild(createChatLi2(mes,first_name));
+              chatbox[iden].scrollTo(0, chatbox[iden].scrollHeight);
+            }
+          }else{
+            if(iden == "2"){
+              chatbox[0].appendChild(createChatLi2(mes,"anonymous"));
+              chatbox[0].scrollTo(0, chatbox[iden].scrollHeight);
+            }
+          }
+        }
+        chatbox[iden].appendChild(createChatLi2(mes,first_name));
+        chatbox[iden].scrollTo(0, chatbox[iden].scrollHeight);
+      }
+    } 
+    function sendSeat(){
+      chatSocket.send(JSON.stringify({
+        'user':email,
+        'seat':nand,
+        'enroll':enroll,
+        'room_name':roomName
+      }));
+    }
+    seatArray = JSON.parse(document.getElementById('seatsin').textContent);
+    seatArray2 = JSON.parse(seatArray);
+   // console.log(typeof seatArray2);
+     console.log(seatArray2); 
+    
+    for(var w=0;w<seatArray2.length;w++){
+      //console.log("hi");
+      var seatU = seatArray2[w];
+      var seat_id = seatArray2[w].seat;
+      var enro = seatArray2[w].enroll;
+      if(seatU == email){
+        console.log("nand modified here");
+        
+        
+        console.log(nand);
+      }
+      //console.log(enro);
+      var rh = seatArray2[w].raise_hand;
+      if(seat_id !="0"){
+        var seator = document.getElementById(`${seat_id}`);
+              seator.innerHTML = enro;
+              console.log(rh);
+              if(rh == false){
+              seator.classList.remove('Selectedseat');
+              seator.classList.remove('AbsentSeat');
+              seator.classList.add('PeopleAttended');
+
+              }else{
+                
+                seator.classList.remove('PeopleAttended');
+                seator.classList.remove('AbsentSeat');
+                seator.classList.add('Raisehand');
+              }
+              //console.log("hi after enro");
+              
+              
+
+      }
+      
+
+    }
+    //const email = JSON.parse(document.getElementById('email').textContent);
+    function send_raise(){
+      if(!raiseHand){
+        raiseHand = true;
+        chatSocket.send(JSON.stringify({
+          'raise_hand':"up",
+          'room_name':roomName,
+          'user':email,
+          'seat':seat_selec,
+          
+        }));
+      }
+
+      else{
+        raiseHand = false;
+        chatSocket.send(JSON.stringify({
+          'raise_hand':"down",
+          'room_name':roomName,
+          'user':email,
+          'seat':nand,
+          
+        }));
+      }
+
+      }
+    function Overide(enroll){
+      chatSocket.send(JSON.stringify({
+        'over':"over",
+        'room_name':roomName,
+        
+        'seat':nand,
+        
+      }));
+
+    }
+    //chatSocket.addEventListener('close', (event) => {
+      
+  //});
+  {% comment %} console.log("exit message sent");
+      chatSocket.send(JSON.stringify({
+        
+        'room_name':roomName,
+        'user':email,
+        'seat_id_f':seat_selec,
+        
+      })); {% endcomment %}
+  {% comment %} chatSocket.onclose() = function(event){
+    console.log("exit message sent");
+      chatSocket.send(JSON.stringify({
+        
+        'room_name':roomName,
+        'user':email,
+        'seat_id_f':seat_selec,
+        
+      }));
+  } {% endcomment %}
+
+  
+    {% comment %} var handraise =document.getElementById("handraise");
+    handraise.addEventListener("click", (e) => {
+      seat.classList.remove('AbsentSeat');
+      seat.classList.add('Raisehand');
+    }); {% endcomment %}
+    document.getElementById("overide").addEventListener("click", function(event) {
+      
+      event.preventDefault();
+      const enroll_d = this.getAttribute("data-enroll");
+      chatSocket.send(JSON.stringify({
+        'over':"over",
+        'room_name':roomName,
+        'enroll':enroll_d,
+        
+        
+      }));
+      
+      
+  });
+    </script>
+  </body>
+</html>

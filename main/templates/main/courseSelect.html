@@ -1,0 +1,184 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block links %}
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'main/styles/courseSelect.css' %}">
+{% endblock %}
+{% block body %}
+{% comment %} <body style = "background-image: url({% static '/main/images/courseSelect.jpeg' %});"> {% endcomment %}
+<div class="backgrnd w3-container">
+    <div class="container">
+    <div class="overlay w3-display-container">
+        <div class="w3-container w3-display-bottomright">
+            {% if request.user.role.name == "teacher" %}
+            
+            <button  id="openFormButton" class="w3-border" onclick="openFormPopUp()" style="border-radius:100%;cursor: pointer;font-size:30px;position: absolute; bottom:20px;right:30px;padding-right:10px;padding-left:10px;">+</button>
+            
+            
+            {% endif %}
+        </div>
+        <div class="Header">
+            <div class="left">
+              <a href="{% url 'home' %}"
+                ><i
+                  class="fa fa-home home"
+                  style="color: rgba(0, 0, 0, 0.556); font-size: 20px"
+                ></i
+              ></a>
+            </div>
+            <div class="mid"></div>
+            <div class="right"><a href="contact.html">Calender</a></div>
+            <div class="right"><a href="{% url 'courseSelect' %}">Courses</a></div>
+            <div class="right">
+              <a href="gallery.html" target="_self">Contact</a>
+            </div>
+            <div class="right">
+                <div class="dropdown">
+                  <a style="padding: 15px;border: 0;margin: 0;"><img src="{% static '/main/images/male.png' %}" alt="profilepic" style="width: 48.5px;"></a>
+                  <div class="dropdown-content">
+                    <a href="{% url 'profile' %}">Profile</a>
+                    {% if not user.is_authenticated %}
+                    <a href="{% url 'login' %}">Login</a>
+                    {% else %}
+                    <a href="{% url 'logout' %}">Logout</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+          </div>
+    
+        <h1 class="choose-course" style="margin-top:25px;">The <b>Hub</b> of <b>Tutorials</b></h1>
+        <div class="flex-container">
+            
+            {% for course in courses %}
+            <a href="{% url 'courseHome' course.id %}" class="box w3-round-large w3-border-0" style="background-image:url({% static '/main/images/courseSelectback.jpeg' %}); text-decoration:none;">
+                <div class="w3-container w3-round-large w3-center" style="width:100%;height:120px;">
+                    <h1 style="margin-top:25px;color:white;">{{course.code}}</h1>
+                    </div>
+                    <div class="w3-container w3-round-large w3-center" style="height:80px; width:100%;margin-top:10px;color: white;">
+                    {{course.name}}
+                    </div>
+            </a>
+            {% endfor %}
+            
+    </div>
+    
+</div>
+
+<div id="formPopup"  style="display: none; position: fixed; top: 0; left: 0; width:100%; height:100%; background: rgba(0, 0, 0, 0.5); z-index: 3;">
+    <div class="w3-display-container formPopups" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; height: 500px; width: 500px; border-radius: 10px;">
+        <button onclick="closeFormPopup()" id="closeFormButton" style="float: right;"><i class="fa fa-close" style="border-radius: 100%; cursor: pointer; color: rgb(0, 0, 0);"></i></button>
+        <h1 style="text-align: center; font-size: 45px; margin-bottom: 20px;">Add Course</h1>
+        <hr style="border: 0.05px dashed grey;">
+        <form method = "POST" action = "">
+            {% csrf_token %}
+            <label style="font-size: 20px; display: block; margin-bottom: 10px;">Course Code:</label>
+            <input id="CourseCode" name="code" class="w3-border-black w3-round-xlarge" required placeholder="Enter your Course Code (e.g., ECN-203, MIN-106, etc)" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+            <label style="font-size: 20px; display: block; margin-bottom: 10px;">Course Name:</label>
+            <input id="CourseName" name="courseName" class="w3-border-black w3-round-xlarge" required placeholder="Enter your Course Name" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+            <label for="selectCourse" style="font-size: 20px; margin-bottom: 10px;">Select Branches:</label>
+            <div class="container">
+                <div class="row" style="width:33%;">
+                    <div class="col-md-4" style="width:110px; display: inline;">
+                        <div class="checkbox-wrapper">
+                            <div class="cbx">
+                                <input name="CSE" id="cbx-1" type="checkbox" value="CSE">
+                                <label for="cbx-1"></label>
+                                <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                                    <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <span>CSE</span>
+                </div>
+                <div class="row">
+                  <div class="col-md-4" style="width:110px; display: inline;">
+                    <div class="checkbox-wrapper">
+                      <div class="cbx">
+                        <input id="cbx-2" name="ECE" type="checkbox" value="ECE">
+                        <label for="cbx-2"></label>
+                        <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                          <path d="M2 8.36364L6.23077 12L13 2"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <span>ECE</span>
+                </div>
+                <div class="row">
+                  <div class="col-md-4" style="width:110px; display: inline;">
+                    <div class="checkbox-wrapper">
+                      <div class="cbx">
+                        <input id="cbx-3" name="EEE" type="checkbox" value="EEE">
+                        <label for="cbx-3"></label>
+                        <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                          <path d="M2 8.36364L6.23077 12L13 2"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <span>EEE</span>
+                </div>
+                <div class="row" style="margin-top:15px;">
+                  <div class="col-md-4" style="width:110px;display:inline;">
+                    <div class="checkbox-wrapper">
+                      <div class="cbx">
+                        <input id="cbx-4" name="DSAI" type="checkbox" value="DSAI">
+                        <label for="cbx-4"></label>
+                        <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                          <path d="M2 8.36364L6.23077 12L13 2"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <span>DSAI</span>
+                </div>
+                <div class="row" style="margin-top:15px;">
+                  <div class="col-md-4" style="width:110px;display:inline;">
+                    <div class="checkbox-wrapper">
+                      <div class="cbx">
+                        <input id="cbx-5" name="EPH" type="checkbox" value="EPH">
+                        <label for="cbx-5"></label>
+                        <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                          <path d="M2 8.36364L6.23077 12L13 2"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                    <span>Eph</span>
+                  </div>
+                  <div class="row" style="margin-top:15px;">
+                  <div class="col-md-4" style="width:100px;display: inline;">
+                    <div class="checkbox-wrapper">
+                      <div class="cbx">
+                        <input id="cbx-6"  name="MECH" type="checkbox" value="MECH">
+                        <label for="cbx-6"></label>
+                        <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                          <path d="M2 8.36364L6.23077 12L13 2"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <span>MECH</span>
+                </div>
+              </div>
+        <button type="submit" class="w3-button w3-border-black w3-round-xxlarge w3-display-bottommiddle" style="margin-bottom: 20px; border: 2px black solid">Create Course</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block js %}
+<script src="{% static 'main/script/courseSelect.js' %}"></script>
+{% endblock %}

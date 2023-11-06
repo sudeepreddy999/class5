@@ -1,0 +1,1664 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CoursePage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity=""></script>
+    
+    <!-- flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+.Announcement {
+  width: 100%;
+  margin-bottom: 2.4rem;
+  background-color: var(--color-dark);;
+  border-radius: 1rem;
+  height:140px;
+  border: 2px solid #000;
+}
+.Announcement__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Announcement__actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.Announcement__actions span {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.Announcement__content {
+  margin:1rem 0;
+}
+
+.Announcement_content a , .Announcement_content b {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  color: var(--color-light);
+  transition: all 0.3s ease-in-out;
+}
+
+.Announcement__content a:hover {
+  color: var(--color-main);
+  text-decoration: underline;
+}
+:root {
+  --color-main: #71c6dd;
+  --color-light: #e5e5e5;
+  --color-dark: #3f4156;
+  --primary-clr: #b38add;
+}
+.add-event {
+  position: absolute;
+  bottom: 100px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #878895;
+  border: 2px solid #878895;
+  opacity: 0.5;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+.add-event:hover {
+  opacity: 1;
+}
+.add-event i {
+  pointer-events: none;
+}
+.events .no-event {
+  width: 100%;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #878895;
+}
+.add-event-wrapper {
+  right: 20px;
+  position: absolute;
+  bottom: 60px;
+  width: 90%;
+  max-height: 0;
+  overflow-y: scroll;
+  border-radius: 5px;
+  background-color: #e6e5e587;
+}
+.add-event-wrapper.active {
+  max-height: 300px;
+}
+.add-event-header {
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  padding-left: 160px;
+  padding-right:10px;
+  align-items: center;
+  justify-content: space-between;
+  color: #373c4f;
+  border-bottom: 1px solid #f5f5f5;
+}
+.add-event-header .close {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.add-event-header .close:hover {
+  color: var(--primary-clr);
+}
+.add-event-header .title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.add-event-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
+.add-event-body .add-event-input {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.add-event-body .add-event-input input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #373c4f;
+}
+.add-event-body .add-event-input input::placeholder {
+  color: #a5a5a5;
+}
+.add-event-body .add-event-input input:focus {
+  border-bottom: 1px solid var(--primary-clr);
+}
+.add-event-body .add-event-input input:focus::placeholder {
+  color: var(--primary-clr);
+}
+.add-event-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.add-event-footer .add-event-btn {
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: var(--primary-clr);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid var(--primary-clr);
+}
+.add-event-footer .add-event-btn:hover {
+  background-color: transparent;
+  color: var(--primary-clr);
+}
+.add-event {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+}
+.Announcements-container {
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    min-height: 580px ;
+}
+.drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover,
+.drop-container.drag-active {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title,
+.drop-container.drag-active .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+#showmore{
+  color: var(--color-main);
+}
+#showmore:hover{
+  color: var(--color-light);
+}
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #0d45a5;
+}
+
+      @media (max-width: 1200px) {
+        .AbtInstu,
+        .Announcements {
+          flex: 100%;
+          width: calc(var(--window-width) * 1) ;
+          max-height: 480px;
+        }
+        .Announcements-container{
+          width: calc(var(--window-width) * 0.984);; 
+        }
+      }
+
+
+  .drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover,
+.drop-container.drag-active {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title,
+.drop-container.drag-active .drop-title {
+  color: #222;
+}
+ 
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+#showmore{
+  color: var(--color-main);
+}
+#showmore:hover{
+  color: var(--color-light);
+}
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #0d45a5;
+}
+
+  
+.container {
+    max-width:100%;
+    width: 96.6%;
+    margin-left: 30px;
+  }
+  
+  .slider-wrapper {
+    position: relative;
+  }
+  
+  .slider-wrapper .slide-button {
+    position: absolute;
+    top: 50%;
+    outline: none;
+    border: none;
+    height: 50px;
+    width: 50px;
+    z-index: 5;
+    color: #fff;
+    display: flex;
+    cursor: pointer;
+    font-size: 2.2rem;
+    background: #000;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .slider-wrapper .slide-button:hover {
+    background: #404040;
+  }
+  
+  .slider-wrapper .slide-button#prev-slide {
+    left: -25px;
+  }
+  
+  .slider-wrapper .slide-button#next-slide {
+    right: -25px;
+  }
+  
+  .slider-wrapper .image-list {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 18px;
+    list-style: none;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  
+  .slider-wrapper .image-list::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .slider-wrapper .image-list .image-item {
+    width: 295px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .container .slider-scrollbar {
+    height: 44px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .slider-scrollbar .scrollbar-track {
+    background: #ccc;
+    width: 100%;
+    height: 2px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    position: relative;
+  }
+  
+  .slider-scrollbar:hover .scrollbar-track {
+    height: 4px;
+  }
+  
+  .slider-scrollbar .scrollbar-thumb {
+    position: absolute;
+    background: #000;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    height: 100%;
+    cursor: grab;
+    border-radius: inherit;
+  }
+  
+  .slider-scrollbar .scrollbar-thumb:active {
+    cursor: grabbing;
+    height: 8px;
+    top: -2px;
+  }
+  
+  .slider-scrollbar .scrollbar-thumb::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -10px;
+    bottom: -10px;
+  }
+  
+  /* Styles for mobile and tablets */
+  @media only screen and (max-width: 1023px) {
+    .slider-wrapper .slide-button {
+      display: none !important;
+    }
+  
+    .slider-wrapper .image-list {
+      gap: 10px;
+      margin-bottom: 15px;
+      scroll-snap-type: x mandatory;
+    }
+  
+    .slider-wrapper .image-list .image-item {
+      width: 280px;
+      height: 380px;
+    }
+  
+    .slider-scrollbar .scrollbar-thumb {
+      width: 20%;
+    }
+  }
+
+  .Header {
+        display: flex;
+        flex: 100%;
+      }
+      .left {
+        flex: 5%;
+      }
+      .right {
+        flex: 5%;
+      }
+      .mid {
+        flex: 75%;
+        background-color: #ffffff;
+      }
+      .Header a {
+        display: block;
+        background-color: rgb(255, 255, 255);
+        list-style-type: none;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: rgba(0, 0, 0, 0.556);
+        text-align: center;
+        font-size: 20px;
+        padding: 30px 30px;
+        text-decoration: none;
+      }
+      .Header a:hover {
+        transition: 0.5s;
+        background-color: rgba(0, 0, 0, 0.556);
+        color: rgb(255, 255, 255);
+      }
+  
+    div.table {
+    width: 100%;
+    height: 100%;
+    background-color: #fff5;
+
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+}
+
+.table__header {
+    width: 100%;
+    height: 10%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table__header .input-group {
+    width: 35%;
+    height: 100%;
+    background-color: #fff5;
+    padding: 0 .8rem;
+    border-radius: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .2s;
+}
+
+.table__header .input-group:hover {
+    width: 45%;
+    background-color: #fff8;
+    box-shadow: 0 .1rem .4rem #0002;
+}
+
+.table__header .input-group img {
+    width: 1.8rem;
+    height: 1.8rem;
+    cursor: pointer;
+}
+
+.table__header .input-group input {
+    width: 100%;
+    padding: 0 .5rem 0 .3rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.table__body {
+    width: 95%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+
+    margin: .8rem auto;
+    border-radius: .6rem;
+
+    overflow: auto;
+    overflow: overlay;
+}
+
+.table__body::-webkit-scrollbar{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+td img {
+    width: 36px;
+    height: 36px;
+    margin-right: .5rem;
+    border-radius: 50%;
+
+    vertical-align: middle;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #bfb1df;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr {
+    --delay: .1s;
+    transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+tbody tr:hover {
+    background-color: #fff6 !important;
+}
+
+tbody tr td,
+tbody tr td p,
+tbody tr td img {
+    transition: .2s ease-in-out;
+}
+
+tbody tr.hide td,
+tbody tr.hide td p {
+    padding: 0;
+    font: 0 / 0 sans-serif;
+    transition: .2s ease-in-out .5s;
+}
+
+tbody tr.hide td img {
+    width: 0;
+    height: 0;
+    transition: .2s ease-in-out .5s;
+}
+
+.status {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.status.corrected,.status.graded {
+    background-color: #86e49d;
+    color: #006b21;
+}
+
+.status.pending {
+    background-color: #d893a3;
+    color: #b30021;
+}
+
+
+@media (max-width: 1000px) {
+    td:not(:first-of-type) {
+        min-width: 12.1rem;
+    }
+}
+
+thead th span.icon-arrow {
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    border: 1.4px solid transparent;
+    
+    text-align: center;
+    font-size: 1rem;
+    
+    margin-left: .5rem;
+    transition: .2s ease-in-out;
+}
+
+thead th:hover span.icon-arrow{
+    border: 1.4px solid #6c00bd;
+}
+
+thead th:hover {
+    color: #6c00bd;
+}
+
+thead th.active span.icon-arrow{
+    background-color: #6c00bd;
+    color: #fff;
+}
+
+thead th.asc span.icon-arrow{
+    transform: rotate(180deg);
+}
+
+thead th.active,tbody td.active {
+    color: #6c00bd;
+}
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+  
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        .dropdown-content {
+          right: 0;
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          width: 120px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        .dropdown-content a {
+          color: rgba(0, 0, 0, 0.556);
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        .dropdown-content a:hover {background-color: rgba(0, 0, 0, 0.556);color: white;}
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+    </style>
+</head>
+
+<body class="w3-white">
+  
+    <div class="w3-container" style="height: 100px; width: 100%;padding:0;margin-bottom:10px;">
+      <div class="Header">
+        <div class="left">
+          <a href="{%url 'home' %}"
+            ><i
+              class="fa fa-home home"
+              style="color: rgba(0, 0, 0, 0.556); font-size: 20px"
+            ></i
+          ></a>
+        </div>
+        <div class="mid"></div>
+        <div class="right"><a href="contact.html">Calender</a></div>
+        <div class="right"><a href="{% url 'courseSelect' %}">Courses</a></div>
+        <div class="right">
+          <a href="gallery.html" target="_self">Contact</a>
+        </div>
+        <div class="right">
+          <div class="dropdown">
+            <a style="padding: 15px;border: 0;margin: 0;"><img src="{% static '/main/images/male.png' %}" alt="profilepic" style="width: 48.5px;"></a>
+            <div class="dropdown-content">
+              <a href="{% url 'profile' %}">Profile</a>
+              {% if not user.is_authenticated %}
+              <a href="{% url 'login' %}">Login</a>
+              {% else %}
+              <a href="{% url 'logout' %}">Logout</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w3-row">
+        <div class="w3-container w3-col w3-border-black" style="width: 65%; height: 600px;border: 2px solid; padding:0;margin-right:15px;">
+            <div class="w3-bar w3-black" style="border-bottom: 2px  solid;">
+              <a class="w3-bar-item w3-button" id="classes" style="background-color:grey;" onclick="classes()">Classes</a>
+              <a class="w3-bar-item w3-button" id="classmaterials"  onclick="classmaterials()">Class Materials</a>
+              <a href= "{% url 'markGrade' course.id %}"class="w3-bar-item w3-button" id="grade"  >Grade</a>
+              
+            </div>
+            <div class="w3-container classess" style="width:100%; height:558px;padding: 0;display:block;">
+              <div class="w3-display-container" style="height:100px;padding:0;">
+                <h1 class="w3-display-topmiddle" style="align-items: center;">{{course.code}}</h1>
+                <div class="w3-display-bottomleft" style="margin-left:10px;">
+                <span>Prof Name:</span><span style="font-size: smaller;color:grey;">{{course.teacher.first_name}}</span>
+                </div>
+              <div class="w3-button w3-border-black w3-round-xxlarge w3-display-topright" style="float: right;margin-top:30px;border:2px black solid;margin-right:10px;" onclick="openFormPopUps()">Add</div>
+              </div>
+                <hr style="border: 2px black solid;">
+                <div class="w3-container" style="max-width: 100%; height:350px;padding:0;padding-right:-40px;">
+                  
+                  <div class="container" style="width:90%;">
+                    <div class="slider-container">
+                    <div class="slider-wrapper">
+                      <button id="prev-slide" class="slide-button material-symbols-rounded">
+                        chevron_left
+                      </button>
+                      <div class="image-list">
+                        
+                        {% for room in rooms %}
+                        <div class="image-item w3-card-4 w3-round-large w3-border-solid" style="text-decoration:none;border:2px black solid;height:100%;">
+                          <div class="img w3-round-large" style="height:70%;background-image:url("{% static '/main/images/courseSelectBack.png' %}")">
+                            <button class="w3-button w3-center" id="btnRedirect" onclick="redirectToNewPage()" style="float:right; cursor: pointer; z-index: 100; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center;">
+                              <i class="fa fa-trash"></i>
+                          </button>
+                          <a href="{% url 'deleteroom' room.id %}" id="deleteroom" style="display:none;"></a>
+                          <a class="w3-card-4 w3-round-large" href="{% url 'room' room.id %}" style="text-decoration:none;">
+                            <div class=" w3-round-large w3-container" >
+                          <p style="font-size:40px;margin-left:45px;margin-top:50px;">{{course.code}}</p>
+                          </div>
+                        </div>
+                          <div class="w3-display-container"  style="height:30%;">
+                            <p style="font-size:13px;margin: 0;padding: 0;border: 0;padding-top:20px;padding-left:8px;">Date:<span>{{room.start_datetime.date}}</span></p>
+                            <p class="w3-display-topright" style="font-size:13px;margin: 0;padding: 0;border: 0;padding-top:20px;padding-left:8px;float:right;padding-right:6px;">Start Time:<span><b>{{room.start_datetime.time}}</b></span></p>
+                            <p style="font-size:13px;margin: 0;padding: 0;border: 0;padding-top:10px;padding-left:8px;">Day:<span>{{room.room_name}}</span></p>
+                            <p class="w3-display-right" style="font-size:13px;margin: 0;padding: 0;border: 0;padding-top:29px;padding-left:8px;float:right;padding-right:6px;">Close Time:<span><b>{{room.end_time}}</b></span></p>
+                            <p ></p>
+                            <!-- <p style="font-size:40px;">ECN-203</p> -->
+                          </div>
+                          </a>
+                         </div>
+                        
+                        
+                        {% endfor %}
+                        
+                      </div>
+                      <button id="next-slide" class="slide-button material-symbols-rounded">
+                        chevron_right
+                      </button>
+                    </div>
+                    <div class="slider-scrollbar">
+                      <div class="scrollbar-track">
+                        <div class="scrollbar-thumb"></div>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  </div>
+              </div>
+                <hr style="border: 2px black solid;">
+            </div>
+            
+
+        <div class="assignment classmaterialss" style="display:none;height:558px;">
+          <div class="table" style="border-radius: 0;">
+              <section class="table__header">
+                  <h1>Files</h1>
+                  <div class="input-group" style="margin-right:50px;">
+                      <input type="search" placeholder="Search Data...">
+                      <img src="{% static '/main/images/search.png' %}" alt="">
+                  </div>
+                  <button class="w3-display-topright w3-xlarge circular-button w3-hover-border-black" onclick="PopUp()" style="right:15px; position: fixed;top:12px;border-radius:50%;border:2px black transparent;color: var(--primary-clr);background-color:transparent;cursor: pointer;width:40px;height:40px;">
+                    <i class="fas fa-plus"></i>
+                  </button>  
+                   
+              </section>
+              <section class="table__body">
+                  <table>
+                      <thead>
+                          <tr>
+                              <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                              <th> Files<span class="icon-arrow">&UpArrow;</span></th>
+                              <th> Uploaded By <span class="icon-arrow">&UpArrow;</span></th>
+                              <th style="width: 140px;"> Uploaded Date</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {% for reso in res %}
+                        <tr>
+                            <td> {{ forloop.counter }} </td>
+                            <td>  <p style="position: relative; width: 300px; height: 30px; cursor: pointer;" onclick="openPdfPopup('{{reso.file_res.name}}', 1, {{reso.file_res.url}})">{{reso.name}} </p></td>
+                            <td> <img src="{{ course.teacher.profilepic.url }}" alt="">{{course.teacher.first_name}}</td>
+                            <td> {{reso.created}} </td>
+                        </tr>
+                       {% endfor %}
+                          
+                      </tbody>
+                  </table>
+                  <div id="pdfModal" class="modal">
+                      <div class="modal-content">
+                          <span class="close" onclick="closePdfPopup()">&times;</span>
+                          <iframe id="pdfIframe" src="" style="width: 100%; height: 100vh; border: none;"></iframe>
+                      </div>
+                  </div>
+              </section>
+            </div>
+      </div>
+      <div class="assignment gradess" style="display:none;height:558px;">
+        <div class="table" style="border-radius:0;" >
+            <section class="table__header">
+                <h1>Grade Assignment</h1>
+                <div class="input-group">
+                    <input type="search" placeholder="Search Data...">
+                    <img src="{% static '/main/images/search.png' %}" alt="">
+                </div>
+            </section>
+            <section class="table__body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Enrollment <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Name <span class="icon-arrow">&UpArrow;</span></th>
+                            <th> Status</th>
+                            <th> Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for grade in grades %}
+                          <tr>
+                            <td> 1 </td><td>{{grade.student.enrollment}}</td>
+                            <td> <img src="{% static '/main/images/male.png' %}" alt="">{{grade.student.first_name}} {{grade.student.last_name}}</td>
+                            <td>
+                              {% if grade.is_graded == false %}
+                                <p class="1C status pending">Pending</p>
+                                {% else %}
+                                <p class="1C status pending">Graded</p>
+                                {% endif %}
+                            </td>
+                            <td><p class="1A">
+                              <form method = "POST" action="">
+                                {% csrf_token %}
+                                <input type="hidden" name="iden" value="2">
+                                <input type="hidden" name="grade_id" value="{{ grade.id }}">
+                              <input class="1" type="text" name="marks" style="height: 30px; width: 40px;">/10 <img class="1B" src="{% static '/main/images/tick.png' %}" style="cursor: pointer;" onclick="save(1)">
+                              </form>
+                            </p></td>
+                          </tr>  
+                          {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+    </div>
+    
+      
+        <div class="w3-container w3-border-black w3-col" style="width: 33.5%; height: 600px; padding: 0; border: 2px solid;">
+            <div class="w3-bar w3-black" >
+                <a class="w3-bar-item w3-button" id="Announcement" style="background-color:grey;" onclick="Announcement()">Announcement</a>
+                <a class="w3-bar-item w3-button" id="Assignment"  onclick="Assignment()">Assignment</a>
+            </div>
+            
+            <div class="w3-display-container Announcements" style="width:100%;height:558px;padding-top:20px;overflow-y:scroll;">
+                <div class="Announcements-container" style="padding:0">
+                    <div class="Announcements" style="margin:0;justify-content: left;">
+                      {% for Announcement in announcements %}
+                      <div class="Announcement" data-announcement-id="{{Announcement.id}}" style="cursor: pointer;">
+                        <div class="Announcement__header">
+                              <div class="avatar avatar--small">
+                                  <img src="{{Announcement.user.avatar.url}}" />
+                              </div>
+                              <span>By : {{Announcement.host}}</span>
+                          <div class="Announcement__actions">
+                              <span>{{Announcement.created}} </span>
+                          </div>
+                          </div>
+                          <hr style="border: 1px solid grey; margin-left: -15px; margin-right: -15px;">
+                          <div style="color: white; font-size: larger; font-family:'Courier New', Courier, monospace; border: 0;margin: 0;padding: 0;padding-top: 15px;  text-transform: capitalize;">{{Announcement.title|slice:":50"}}</div>
+                         <div class="Announcement__content">
+                           <b class="announcement_content">{{Announcement.body|slice:":100"}}</b><a href="/home/announcements/{{Announcement.id}}"><b id="showmore">..showmore</b></a>
+                          </div>
+                        </div>
+                      {% comment %} <div class="Announcement" >
+                        <div class="Announcement__header">
+                              <div class="avatar avatar--small">
+                                  <!-- <img src="{{Announcement.user.avatar.url}}" /> -->
+                              </div>
+                              <!-- <span>By : {{Announcement.user.username}}</span> -->
+                          </a>
+                          <div class="Announcement__actions">
+                               <span>{{Announcement.created|timesince}} ago</span> 
+                          </div>
+                          </div>
+                         <div class="Announcement__content" style="margin-top: 45px;">
+                           <b>{{Announcement.description|slice:"100"}}</b><a href="announcement.html"><b id="showmore">..showmore</b></a>
+                          </div>
+                        </div> {% endcomment %}
+              {% endfor %}  
+              <div class="add-event-wrapper">
+                <div class="add-event-header">
+                  <div class="title w3-center" style="text-align: center;"><pre>Add Event</pre></div>
+                  <i class="fas fa-times close"></i>
+                </div>
+                <form method ="POST" action="">
+                  <input name="iden" type="text" value="0">
+                {% csrf_token %}
+                <div class="add-event-body">
+                  <div class="add-event-input">
+                    <input type="text" name="title"placeholder="Title" class="event-name" />
+                  </div>
+                  <div class="add-event-input">
+                    <input
+                    name="body"
+                      type="text"
+                      placeholder="Description"
+                      class="event-time-from"
+                    />
+                  </div>
+                  <div>
+                    <label for="images" class="drop-container" id="dropcontainer">
+                      <span class="drop-title">Drop files here</span>
+                      or
+                      <input type="file" name="fileinput0" id="fileInput"  multiple>
+                    </label>
+                  </div>
+                </div>
+                <div class="add-event-footer">
+                  <button type = "submit"class="add-event-btn">Add Event</button>
+                </form>
+                </div>
+              </div>
+              <button class="add-event w3-display-bottomright">
+                <i class="fas fa-plus"></i>
+                </button>
+              
+              </div>
+              </div>
+            </div>
+            <div class="w3-container Assignments" style="width:100%;height:527px;margin-top:30px;display:none;padding:0;">
+              {% if request.user.role.name == "student" %}
+              <div class="w3-button w3-border-black w3-round-xxlarge " id="PastDue" style="width:45%; border: 2px solid; text-align: center;background-color:grey;margin-left:12px;" onclick="PastDue()">Past Due</div>
+              {% else %}
+              <div class="w3-button w3-border-black w3-round-xxlarge " id="PastDue" style="width:45%; border: 2px solid; text-align: center;background-color:grey;margin-left:12px;" onclick="PastDue()">Assignments</div>
+              {% endif %}
+              {% if request.user.role.name == "student" %}
+              <div class="w3-button w3-border-black w3-round-xxlarge" id="Completed" style="width:45%; border: 2px solid; text-align: center;margin-left:25px;" onclick="Completed()">Completed</div>
+              {% else %}
+              <div class="w3-button w3-border-black w3-round-xxlarge" id="Completed" style="width:45%; border: 2px solid; text-align: center;margin-left:25px;" onclick="Completed()">Allot Marks</div>
+
+              {% endif %}
+              <hr style="border:0.2px grey solid;">
+              
+              <div class="w3-display-container PastDues" style="margin-bottom:15px;height:440px;overflow-y:scroll;padding-left:15px;">
+                {% if request.user.role.name == "student" %}
+                {% for assi in assi_due  %}
+                  <strong>{{assi.closing_date}}</strong><span style="margin-left:10px;font-size: small;"></span>
+                  <a href="{% url 'AssignmentSub' course.id assi.id %}">
+                  <div class="w3-container w3-round-large w3-border" style="height:125px;width:100%;margin-top:15px;padding:0;border-color: grey;margin-bottom:15px;">
+                      <div class="w3-row" >
+                          <div class="w3-col w3-container" style="width:20%;height:auto;">
+                              <img src="{% static '/main/images/assignmenticon.png' %}" width="50px" height="50px" style="border-radius:20%;margin-top:15px;">
+                          </div>
+                          <div class="w3-col" style="width:70%;height:125px;margin-left:-18px;padding-top:0px;margin-right:10px;">
+                          <p>{{assi.name}}</p>
+                          <p style="font-size: smaller;margin-top: -10px;color: grey;">Marks available: {{assi.total_marks}} points</p>
+                          <p style="font-size: small;margin-top:-5px;color: grey;">{{course.code}}: {{course.name}}</p>
+                          </div>
+                          <div class="w3-col" style="height:125px; width:10%;">
+                          <div class="w3-container w3-green w3-center" style="height:30px;width:30px;margin-top:15px;"></div>
+                          </div>
+                      </div>
+                  </div>
+                  </a>
+                {% endfor %}
+                {% else %}
+
+                {% for assi in assignments  %}
+                  <strong>{{assi.closing_date}}</strong><span style="margin-left:10px;font-size: small;"></span>
+                  <a href="{% url 'AssignmentSub' course.id assi.id %}">
+                  <div class="w3-container w3-round-large w3-border" style="height:125px;width:100%;margin-top:15px;padding:0;border-color: grey;margin-bottom:15px;">
+                      <div class="w3-row" >
+                          <div class="w3-col w3-container" style="width:20%;height:auto;">
+                              <img src="{% static '/main/images/assignmenticon.png' %}" width="50px" height="50px" style="border-radius:20%;margin-top:15px;">
+                          </div>
+                          <div class="w3-col" style="width:70%;height:125px;margin-left:-18px;padding-top:0px;margin-right:10px;">
+                          <p>{{assi.name}}</p>
+                          <p style="font-size: smaller;margin-top: -10px;color: grey;">Marks available: {{assi.total_marks}} points</p>
+                          <p style="font-size: small;margin-top:-5px;color: grey;">{{course.code}}: {{course.name}}</p>
+                          </div>
+                          <div class="w3-col" style="height:125px; width:10%;">
+                          <div class="w3-container w3-green w3-center" style="height:30px;width:30px;margin-top:15px;"></div>
+                          </div>
+                      </div>
+                  </div>
+                  </a>
+                {% endfor %}
+
+                {% endif %}
+                    <button class="w3-display-bottomright w3-xlarge circular-button w3-hover-border-black" onclick="openFormPopUp()" style="bottom:50px;right:50px;position: absolute;border-radius:50%;border:2px black transparent;color: var(--primary-clr);background-color:transparent;cursor: pointer;width:40px;height:40px;">
+                      <i class="fas fa-plus"></i>
+                      </button>
+                    
+              </div>
+              <div class="w3-container Completeds" style="margin-bottom:15px;height:440px;overflow-y:scroll;padding-left:15px;">
+                {% if request.user.role == "student" %}
+                {% for assi in assi_comp %}
+                <strong>{{assi.closing_date}}</strong><span style="margin-left:10px;font-size: small;"></span>
+                <a href="{% url 'AssignmentView' course.id assi.id %}">
+                <div class="w3-container w3-round-large w3-border" style="height:125px;width:100%;margin-top:15px;padding:0;border-color: grey;margin-bottom:15px;">
+                    <div class="w3-row" >
+                        <div class="w3-col w3-container" style="width:20%;height:auto;">
+                            <img src="{% static '/main/images/assignmenticon.png' %}" width="50px" height="50px" style="border-radius:20%;margin-top:15px;">
+                        </div>
+                        <div class="w3-col" style="width:70%;height:125px;margin-left:-18px;padding-top:0px;margin-right:10px;">
+                        <p>{{assi.name}}</p>
+                        <p style="font-size: smaller;margin-top: -10px;color: grey;">Marks awarded: {{assi.total_marks}} points</p>
+                        <p style="font-size: small;margin-top:-5px;color: grey;">{{course.code}}: {{course.name}}</p>
+                        </div>
+                        <div class="w3-col" style="height:125px; width:10%;">
+                        <div class="w3-container w3-green w3-center" style="height:30px;width:30px;margin-top:15px;"></div>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+
+                {%  else %}
+                {% for assi in assignments %}
+                <strong>{{assi.closing_date}}</strong><span style="margin-left:10px;font-size: small;"></span>
+                <a href="{% url 'assiMark'  assi.id %}">
+                <div class="w3-container w3-round-large w3-border" style="height:125px;width:100%;margin-top:15px;padding:0;border-color: grey;margin-bottom:15px;">
+                    <div class="w3-row" >
+                        <div class="w3-col w3-container" style="width:20%;height:auto;">
+                            <img src="{% static '/main/images/assignmenticon.png' %}" width="50px" height="50px" style="border-radius:20%;margin-top:15px;">
+                        </div>
+                        <div class="w3-col" style="width:70%;height:125px;margin-left:-18px;padding-top:0px;margin-right:10px;">
+                        <p>{{assi.name}}</p>
+                        <p style="font-size: smaller;margin-top: -10px;color: grey;">Marks awarded: {{assi.total_marks}} points</p>
+                        <p style="font-size: small;margin-top:-5px;color: grey;">{{course.code}}: {{course.name}}</p>
+                        </div>
+                        <div class="w3-col" style="height:125px; width:10%;">
+                        <div class="w3-container w3-green w3-center" style="height:30px;width:30px;margin-top:15px;"></div>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+                
+                {% endif %}
+                
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div id="formPopup"  style="display: none; position: fixed; top: 0; left: 0; width:100%; height:100%; background: rgba(0, 0, 0, 0.5); z-index: 20;">
+      <div class="w3-display-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; height: 500px; width: 600px; border-radius: 10px; overflow-y:scroll;">
+          <button onclick="closeFormPopup()" id="closeFormButton" style="float: right;"><i class="fa fa-close" style="border-radius: 100%; cursor: pointer; color: rgb(0, 0, 0);"></i></button>
+          <h1 style="text-align: center; font-size: 45px; margin-bottom: 20px;color:black;">Add Assignment</h1>
+          <hr style="border: 0.05px dashed grey;">
+          <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input name="iden" value="5" style="display:none;">
+              <label style="font-size: 20px; display: block; margin-bottom: 10px;color:black;">Assignment Name:</label>
+              <input id="AssignmentName"name="name" class="w3-border-black w3-round-xlarge" required placeholder="(e.g.,(Assignment-2(Assignment Name)))" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+              <label style="font-size: 20px; display: block; margin-bottom: 10px;color: black;">Marks Available:</label>
+              <input id="Marks"name="max_marks" class="w3-border-black w3-round-xlarge" required placeholder="Enter the total marks here(in numbers only)" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+              <label style="font-size: 20px; display: block; margin-bottom: 10px;color:black;">Close Time And Date:</label>
+              <div style="margin-top: 10px;">
+                
+                    <input class="w3-border-black w3-border-xxlarge" name="endtime" type="datetime-local" placeholder="Select DateTime" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+                
+              </div>
+              <div class="w3-center">
+              <label style="font-size:smaller; display: block; margin-bottom: 10px;color:grey;">Attach Assignment here</label>
+              </div>
+              <label for="images" class="drop-container" id="dropcontainer">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input name="fileinput"type="file" id="fileInput"  multiple>
+              </label>
+              <div class="w3-center">
+              <button type="submit" class="w3-button w3-border-black w3-round-xxlarge" style="border: 2px black solid;color:black;margin-top:20px;align-items: center;">Create Assignment</button>
+              </div>
+            </form>
+      </div>
+    </div>
+    
+    <div id="formPopups"  style="display: none; position: fixed; top: 0; left: 0; width:100%; height:100%; background: rgba(0, 0, 0, 0.5); z-index: 20;">
+      <div class="w3-display-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; height: auto; width: 600px; border-radius: 10px; overflow-y:scroll;">
+          <button onclick="closeFormPopups()" id="closeFormButtons" style="float: right;"><i class="fa fa-close" style="border-radius: 100%; cursor: pointer; color: rgb(0, 0, 0);"></i></button>
+          {% if request.user.role == "teacher" %}
+          <h1 style="text-align: center; font-size: 45px; margin-bottom: 20px;color:black;">Add Class</h1>
+          {% endif %}
+          <hr style="border: 0.05px dashed black;">
+          <form method = "POST" action="">
+            {% csrf_token %}
+            <input name="iden" value="3" style="display:none;">
+            <label style="font-size: 20px; display: block; margin-bottom: 10px;color:black;">Start Time And Date:</label>
+              <div style="margin-top: 10px;">
+                
+                    <input name="starttime" class="w3-border-black w3-border-xxlarge" type="datetime-local" placeholder="Select DateTime" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+                
+              </div>
+              <label style="font-size: 20px; display: block; margin-bottom: 10px;color:black;">Close Time And Date:</label>
+              <div style="margin-top: 10px;">
+                
+                    <input name="endtime"class="w3-border-black w3-border-xxlarge" type="datetime-local" placeholder="Select DateTime" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+              
+              </div>
+              <label style="font-size: 20px; display: block; margin-bottom: 10px;color:black;">Room Location:</label>
+              <input id="ClassLoc" name="roomloc" class="w3-border-black w3-round-xlarge" required placeholder="(room-location)" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+              <div class="w3-center">
+              <button type="submit" class="w3-button w3-border-black w3-round-xxlarge" style="border: 2px black solid;color:black;margin-top:20px;align-items: center;">Create Class</button>
+              </div>
+            </form>
+      </div>
+    </div>
+
+    <div id="formPopupss"  style="display: none; position: fixed; top: 0; left: 0; width:100%; height:100%; background: rgba(0, 0, 0, 0.5); z-index: 20;">
+      <div class="w3-display-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; height: 500px; width: 600px; border-radius: 10px; overflow-y:scroll;">
+          <button onclick="closeFormPopupss()" id="closeFormButtonss" style="float: right;"><i class="fa fa-close" style="border-radius: 100%; cursor: pointer; color: rgb(0, 0, 0);"></i></button>
+          <h1 style="text-align: center; font-size: 45px; margin-bottom: 20px;color:black;">Add ClassMaterial</h1>
+          <hr style="border: 0.05px dashed grey;">
+          <form method="POST" action="" enctype="multipart/form-data">
+            
+            {% csrf_token %}
+            <input name="iden" value="1" style="display:none;">
+              <label style="font-size: 20px; display: block; margin-bottom: 10px;color:black;">Topic Name:</label>
+              <input id="TopicName" name="topic" class="w3-border-black w3-round-xlarge" required placeholder="Enter the Topic here" style="width: 100%; border: 2px solid black; height: 40px; margin-bottom: 10px;">
+              <label class="w3-center" style="font-size:smaller; display: block; margin-bottom: 10px;color:grey;">Attach the file here</label>
+              <label for="images" class="drop-container" id="dropcontainer">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" name="fileinput"  id="fileInput"  multiple>
+              </label>
+              <div class="w3-center">
+                <button type="submit" class="w3-button w3-border-black w3-round-xxlarge" style="border: 2px black solid;color:black;margin-top:20px;align-items: center;">Add ClassMaterial</button>
+                </div>
+            </div>
+            </form>
+      </div>
+    </div> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity=""></script>
+    <script>
+      {% comment %} window.onbeforeunload = function() {
+        return "You are not allowed to refresh this page.";
+      }; {% endcomment %}
+      function redirectToNewPage() {
+        //window.location.href = "homepage.html";
+        var link = document.getElementById("deleteroom");
+        link.click()
+    }
+      const initSlider = () => {
+          const imageList = document.querySelector(".slider-wrapper .image-list");
+          const slideButtons = document.querySelectorAll(".slider-wrapper .slide-button");
+          const sliderScrollbar = document.querySelector(".container .slider-scrollbar");
+          const scrollbarThumb = sliderScrollbar.querySelector(".scrollbar-thumb");
+          const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+          
+          // Handle scrollbar thumb drag
+          scrollbarThumb.addEventListener("mousedown", (e) => {
+              const startX = e.clientX;
+              const thumbPosition = scrollbarThumb.offsetLeft;
+              const maxThumbPosition = sliderScrollbar.getBoundingClientRect().width - scrollbarThumb.offsetWidth;
+              
+              // Update thumb position on mouse move
+              const handleMouseMove = (e) => {
+                  const deltaX = e.clientX - startX;
+                  const newThumbPosition = thumbPosition + deltaX;
+      
+                  // Ensure the scrollbar thumb stays within bounds
+                  const boundedPosition = Math.max(0, Math.min(maxThumbPosition, newThumbPosition));
+                  const scrollPosition = (boundedPosition / maxThumbPosition) * maxScrollLeft;
+                  
+                  scrollbarThumb.style.left = `${boundedPosition}px`;
+                  imageList.scrollLeft = scrollPosition;
+              }
+      
+              // Remove event listeners on mouse up
+              const handleMouseUp = () => {
+                  document.removeEventListener("mousemove", handleMouseMove);
+                  document.removeEventListener("mouseup", handleMouseUp);
+              }
+      
+              // Add event listeners for drag interaction
+              document.addEventListener("mousemove", handleMouseMove);
+              document.addEventListener("mouseup", handleMouseUp);
+          });
+      
+          // Slide images according to the slide button clicks
+          slideButtons.forEach(button => {
+              button.addEventListener("click", () => {
+                  const direction = button.id === "prev-slide" ? -1 : 1;
+                  const scrollAmount = imageList.clientWidth * direction;
+                  imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+              });
+          });
+      
+           // Show or hide slide buttons based on scroll position
+          const handleSlideButtons = () => {
+              slideButtons[0].style.display = imageList.scrollLeft <= 0 ? "none" : "flex";
+              slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? "none" : "flex";
+          }
+      
+          // Update scrollbar thumb position based on image scroll
+          const updateScrollThumbPosition = () => {
+            
+              const scrollPosition = imageList.scrollLeft;
+              const thumbPosition = (scrollPosition / maxScrollLeft) * (sliderScrollbar.clientWidth - scrollbarThumb.offsetWidth);
+              scrollbarThumb.style.left = `${thumbPosition}px`;
+          }
+      
+          // Call these two functions when image list scrolls
+          imageList.addEventListener("scroll", () => {
+              updateScrollThumbPosition();
+              handleSlideButtons();
+          });
+      }
+      
+      document.addEventListener("DOMContentLoaded", () => {
+          initSlider();
+      });
+      
+      const addEventBtn = document.querySelector(".add-event");
+      const addEventWrapper = document.querySelector(".add-event-wrapper");
+      const addEventCloseBtn = addEventWrapper.querySelector(".close"); // Updated selector
+      const addEventTitle = document.querySelector(".event-name");
+      
+      addEventBtn.addEventListener("click", () => {
+        addEventWrapper.classList.toggle("active");
+      });
+      
+      addEventCloseBtn.addEventListener("click", () => {
+        addEventWrapper.classList.remove("active");
+      });
+      
+      document.addEventListener("click", (e) => {
+        if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
+          addEventWrapper.classList.remove("active");
+        }
+      });
+      
+      addEventTitle.addEventListener("input", (e) => {
+        addEventTitle.value = addEventTitle.value.slice(0, 60);
+      });
+      window.addEventListener('load', updateWindowSize);
+      window.addEventListener('resize', updateWindowSize);
+      
+      const dropContainer = document.getElementById("dropcontainer");
+      
+      dropContainer.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          dropContainer.classList.add("drag-active");
+      });
+      
+      dropContainer.addEventListener("dragleave", () => {
+          dropContainer.classList.remove("drag-active");
+      });
+      
+      dropContainer.addEventListener("drop", (e) => {
+          e.preventDefault();
+          dropContainer.classList.remove("drag-active");
+      
+          const fileInput = document.getElementById("fileInput");
+          fileInput.files = e.dataTransfer.files;
+          displayPDFLink();
+      });
+      
+      function displayPDFLink() {
+          const fileInput = document.getElementById("fileInput");
+          const pdfLinkContainer = document.getElementById("pdfLinkContainer");
+      
+          if (fileInput.files.length > 0) {
+              const selectedFile = fileInput.files[0];
+              if (selectedFile.type === "application/pdf") {
+                  const pdfLink = document.createElement("a");
+                  pdfLink.href = URL.createObjectURL(selectedFile);
+                  pdfLink.textContent = "Open PDF";
+                  pdfLink.target = "_blank";
+                  pdfLinkContainer.innerHTML = "";
+                  pdfLinkContainer.appendChild(pdfLink);
+              } else {
+                  alert("Please select a valid PDF file.");
+                  fileInput.value = "";
+                  pdfLinkContainer.innerHTML = "";
+              }
+          }
+      }
+      
+      function deleteForm(closeButton) {
+          const formContainer = closeButton.parentElement;
+          formContainer.style.display = "none";
+          document.getElementById("addAssignmentButton").style.display="block";
+      }
+      
+      
+      function openFormPopUp() {
+              document.getElementById("formPopup").style.display = "block";
+             
+      }
+      
+      function closeFormPopup(){
+          document.getElementById("formPopup").style.display = "none";
+      }   
+      
+      function openFormPopUps() {
+          var popupForm = document.getElementById("formPopups");
+          popupForm.style.display = "block";
+        }
+        function closeFormPopups() {
+          var popupForm = document.getElementById("formPopups");
+          popupForm.style.display = "none";
+        }
+      
+      function PopUp(){
+        document.getElementById("formPopupss").style.display="block";
+      }
+      
+      function closeFormPopupss(){
+        document.getElementById("formPopupss").style.display="none";
+      }
+      
+      
+      const search = document.querySelector('.input-group input'),
+      table_rows = document.querySelectorAll('tbody tr'),
+      table_headings = document.querySelectorAll('thead th');
+      search.addEventListener('input', searchTable);
+      
+      function searchTable() {
+          table_rows.forEach((row, i) => {
+              let table_data = row.textContent.toLowerCase(),
+                  search_data = search.value.toLowerCase();
+      
+              row.classList.toggle('hide', table_data.indexOf(search_data) < 0);
+              row.style.setProperty('--delay', i / 25 + 's');
+          })
+      
+          document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
+              visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
+          });
+      }
+      
+      table_headings.forEach((head, i) => {
+          let sort_asc = true;
+          if(i<3){
+          head.onclick = () => {
+              table_headings.forEach(head => head.classList.remove('active'));
+              head.classList.add('active');
+      
+              document.querySelectorAll('td').forEach(td => td.classList.remove('active'));
+              table_rows.forEach(row => {
+                  row.querySelectorAll('td')[i].classList.add('active');
+              })
+      
+              head.classList.toggle('asc', sort_asc);
+              sort_asc = head.classList.contains('asc') ? false : true;
+      
+              sortTable(i, sort_asc);
+          }
+      }
+      });
+      
+      
+      function sortTable(column, sort_asc) {
+          [...table_rows].sort((a, b) => {
+              let first_row = a.querySelectorAll('td')[column].textContent.toLowerCase(),
+                  second_row = b.querySelectorAll('td')[column].textContent.toLowerCase();
+      
+              return sort_asc ? (first_row < second_row ? 1 : -1) : (first_row < second_row ? -1 : 1);
+          })
+              .map(sorted_row => document.querySelector('tbody').appendChild(sorted_row));
+      }
+      function openPdfPopup(pdfFileName, page) {
+          const pdfURL = pdfFileName + '#page=' + page;
+          document.getElementById('pdfIframe').src = pdfURL;
+          document.getElementById('pdfModal').style.display = 'block';
+      }
+      
+      function closePdfPopup() {
+          document.getElementById('pdfModal').style.display = 'none';
+          document.getElementById('pdfIframe').src = '';
+      }
+          
+      
+      function Announcement() {
+      
+        document.querySelector(".Announcements").style.display = "block";
+        document.querySelector(".Assignments").style.display = "none";
+        document.querySelector("#Announcement").style.backgroundColor = "grey";
+        document.querySelector("#Assignment").style.backgroundColor = "initial";
+      }
+      
+      function Assignment() {
+      
+        document.querySelector(".Assignments").style.display = "block";
+        document.querySelector(".Announcements").style.display = "none";
+        document.querySelector("#Assignment").style.backgroundColor = "grey";
+        document.querySelector("#Announcement").style.backgroundColor = "initial";
+        PastDue();
+      }
+      
+      function PastDue() {
+      
+        document.querySelector(".PastDues").style.display = "block";
+        document.querySelector(".Completeds").style.display = "none";
+        document.querySelector("#PastDue").style.backgroundColor = "grey";
+        document.querySelector("#Completed").style.backgroundColor = "initial";
+      }
+      
+      function Completed() {
+       
+        document.querySelector(".Completeds").style.display = "block";
+        document.querySelector(".PastDues").style.display = "none";
+        document.querySelector("#Completed").style.backgroundColor = "grey";
+        document.querySelector("#PastDue").style.backgroundColor = "initial";
+      }
+      
+      function classes() {
+        document.querySelector(".classess").style.display = "block";
+        document.querySelector(".classmaterialss").style.display = "none";
+        document.querySelector(".gradess").style.display = "none";
+      
+        document.querySelector("#classes").style.backgroundColor = "grey";
+        document.querySelector("#classmaterials").style.backgroundColor = "initial";
+        document.querySelector("#grade").style.backgroundColor = "initial";
+      }
+      
+      function classmaterials(){
+        document.querySelector(".classmaterialss").style.display = "block";
+        document.querySelector(".classess").style.display = "none";
+        document.querySelector(".gradess").style.display = "none";
+      
+        document.querySelector("#classmaterials").style.backgroundColor = "grey";
+        document.querySelector("#classes").style.backgroundColor = "initial";
+        document.querySelector("#grade").style.backgroundColor = "initial";
+      }
+      
+      function grade() {
+        document.querySelector(".classess").style.display = "none";
+        document.querySelector(".classmaterialss").style.display = "none";
+        document.querySelector(".gradess").style.display = "block";
+        document.querySelector("#grade").style.backgroundColor = "grey";
+        document.querySelector("#classes").style.backgroundColor = "initial";
+        document.querySelector("#classmaterials").style.backgroundColor = "initial";
+      }
+      
+      
+      
+      
+      search.addEventListener('input', searchTable);
+      
+      function searchTable() {
+          table_rows.forEach((row, i) => {
+              let table_data = row.textContent.toLowerCase(),
+                  search_data = search.value.toLowerCase();
+      
+              row.classList.toggle('hide', table_data.indexOf(search_data) < 0);
+              row.style.setProperty('--delay', i / 25 + 's');
+          })
+      
+          document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
+              visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
+          });
+      }
+      
+      table_headings.forEach((head, i) => {
+          let sort_asc = true;
+          if(i<3){
+          head.onclick = () => {
+              table_headings.forEach(head => head.classList.remove('active'));
+              head.classList.add('active');
+      
+              document.querySelectorAll('td').forEach(td => td.classList.remove('active'));
+              table_rows.forEach(row => {
+                  row.querySelectorAll('td')[i].classList.add('active');
+              })
+      
+              head.classList.toggle('asc', sort_asc);
+              sort_asc = head.classList.contains('asc') ? false : true;
+      
+              sortTable(i, sort_asc);
+          }
+      }
+      });
+      
+      
+      function sortTable(column, sort_asc) {
+          [...table_rows].sort((a, b) => {
+              let first_row = a.querySelectorAll('td')[column].textContent.toLowerCase(),
+                  second_row = b.querySelectorAll('td')[column].textContent.toLowerCase();
+      
+              return sort_asc ? (first_row < second_row ? 1 : -1) : (first_row < second_row ? -1 : 1);
+          })
+              .map(sorted_row => document.querySelector('tbody').appendChild(sorted_row));
+      }
+      
+      
+      function save(number) {
+        let forImg = `${number}B`;
+        let forP = `${number}A`;
+        let forP2 = `${number}C`;
+        let forInp = `${number}`;
+        const inputElements = document.getElementsByClassName(forInp);
+        if (inputElements.length > 0) {
+          const inputElement = inputElements[0];
+          const inputValue = inputElement.value;
+          const intValue = parseInt(inputValue);
+      
+          if (intValue <= 10 && intValue > 0) {
+            inputElement.style.display = 'none';
+            const Img = document.getElementsByClassName(forImg);
+            if (Img.length > 0) {
+              Img[0].style.display = 'none';
+            }
+            const paragraph = document.getElementsByClassName(forP);
+            if (paragraph.length > 0) {
+              paragraph[0].textContent = `${intValue}`/10;
+            }
+            const paragraph2 = document.getElementsByClassName(forP2)[0];
+            if (paragraph2.classList.contains('pending')) {
+          paragraph2.classList.remove('pending');
+          paragraph2.classList.add('graded');
+          paragraph2.innerHTML = 'Graded';
+        }
+          } else {
+            alert('Input is not in the range');
+            inputElement.value="";
+          }
+        }
+      }
+      
+      config = {
+                  enableTime: true,
+                  dateFormat: "Y-m-d H:i",
+                  altInput: true,
+                  altFormat: "F j, Y (h:S K)"
+              }
+              flatpickr("input[type=datetime-local]", config);
+      
+      </script>
+      
+</body>
+</html>

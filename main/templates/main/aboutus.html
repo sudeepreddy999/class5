@@ -1,0 +1,601 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+    margin-top:70px;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-sizing: border-box;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+      }
+      body {
+    	font-family: 'Poppins', sans-serif;
+        background-color: #ffffff;
+      }
+      .MegaContainer {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .AbtHosp {
+        padding: 10px;
+        flex: 100%;
+        display: flex;
+        height: 420px;
+      }
+      .Intro {
+        width: 100vw;
+        height: auto;
+      }
+      .container img {
+            height: auto;
+            display: block;
+        }
+      .Header {
+        display: flex;
+        flex: 100%;
+      }
+      .left {
+        flex: 5%;
+      }
+      .right {
+        flex: 5%;
+      }
+      .mid {
+        flex: 75%;
+        background-color: #ffffff;
+      }
+      .Header a {
+        display: block;
+        background-color: rgb(255, 255, 255);
+        list-style-type: none;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: rgba(0, 0, 0, 0.556);
+        text-align: center;
+        font-size: 20px;
+        padding: 30px 30px;
+        text-decoration: none;
+      }
+      .Header a:hover {
+        transition: 0.5s;
+        background-color: rgba(0, 0, 0, 0.556);
+        color: rgb(255, 255, 255);
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        right: 0;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 120px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+      .dropdown-content a {
+        color: rgba(0, 0, 0, 0.556);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdown-content a:hover {
+        background-color: rgba(0, 0, 0, 0.556);
+        color: white;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      h2{
+        font-size: 32px;
+        font-weight: 50;
+        color: #1b1c1dbd;
+        font-family: sans-serif;
+        width: 100%;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+      .column {
+    float: left;
+    width: 33.3%;
+    margin-bottom: 16px;
+    padding: 0 28px;
+  }
+  
+  .card {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
+    margin: 8px;
+    height: 500px;
+  }
+
+  .container1{
+    padding: 0 16px;
+  }  
+  .title {
+    color: rgb(0, 0, 0);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+    font-size: 26px;
+    font-weight: 100;
+    margin: 10px 10px 16px;
+  }
+  .subtitle {
+    color: rgb(0, 0, 0);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+    font-size: 20px;
+    margin: 0 10px 12px;
+    font-weight: 100;
+  }
+  .info {
+    color: rgb(0, 0, 0);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+    font-size: 16px;
+    margin: 0 10px 45px;
+  }  
+  .hemi{
+    width: 50%;
+  }
+  .container2{
+    padding: 60px;
+  }
+  .title2 {
+    color: rgb(0, 0, 0);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+    font-size: 36px;
+    font-weight: 100;
+    margin: 10px 10px 36px;
+  }
+  .subtitle2 {
+    color: rgb(0, 0, 0);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+    font-size: 25px;
+    margin: 0 10px 20px;
+    font-weight: 100;
+  }
+  .info2 {
+    color: rgb(0, 0, 0);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+    font-size: 18px;
+    margin: 0 10px 35px;
+  }  
+  .first,.third{
+    flex-direction: row-reverse;
+  }
+  @media screen and (max-width: 950px) {
+    .column {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+    .card{
+        height: 680px;
+        border-radius: 10px;
+    }
+    .AbtHosp{
+        height: 950px;
+        display: block;
+    }
+    .hemi{
+        width: 100%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+    .card{
+        height: 480px;
+        border-radius: 10px;
+    }
+    .AbtHosp{
+        height: 700px;
+        display: block;
+    }
+}
+.Announ{
+        height:600px;
+      }
+.ImgContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  max-width: var(--slide-width);
+  border: 5px solid #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-radius: 5px;
+}
+.ImgContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.imgs {
+  border-radius: 5px;
+  scroll-snap-align: start;
+  width: 100%;
+  height:100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation-name:none;
+}
+
+.dots {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 15px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dots a {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+  cursor: pointer;
+}
+.dots a:hover {
+  opacity: 1;
+}
+
+#rows{
+    justify-content:center;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="MegaContainer">
+      <div class="Header">
+        <div class="left">
+          <a href=""><i class="fa fa-home" style="color: rgba(0, 0, 0, 0.556); font-size: 20px"></i></a>
+        </div>
+        <div class="mid"></div>
+        <div class="right"><a href="">Calendar</a></div>
+        <div class="right"><a href="">Courses</a></div>
+        <div class="right">
+          <a href="">Contact</a>
+        </div>
+        <div class="right">
+          <div class="dropdown">
+            <a style="padding: 15px; border: 0; margin: 0"><img src="{% static '/main/images/male.png' %}" style="width: 48.5px"/></a>
+            <div class="dropdown-content">
+              <a href="">Profile</a>
+              <a href="">Login</a>
+              <a href="">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Intro">
+        <div class="Announ">
+          <div class="ImgContainer" id="ImgContainer" style="position:relative">
+            <div id="img-7" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1466853817435-05b43fe45b39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2198&q=80);"></div>
+            <div id="img-8" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80);"></div>
+            <div id="img-9" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2842&q=80);"></div>
+            <div id="img-10" class="imgs" style="display: none; background-image: url('{% static '/main/images/emo.png' %}');"></div>
+            <div id="img-11" class="imgs" style="display: none; background-image: url('{% static '/main/images/bed.png' %}');"></div>
+            <div id="img-12" class="imgs" style="display: none; background-image: url('{% static '/main/images/doctor.png' %}');"></div>
+          </div>
+          <p id="greaterthan" style="position: absolute;top: 48%;right: 8px; background-color: rgba(128, 128, 128, 0.41);color: white; padding: 15px 10px;border-radius: 10px;cursor: pointer; font-size: 25px;">&gt;</p>
+          <p id="lessthan" style="position: absolute;top: 48%;left: 8px; background-color: rgba(128, 128, 128, 0.41);color: white; padding: 15px 10px;border-radius: 10px;cursor: pointer; font-size: 25px;">&lt;</p>
+        
+          <div class="dots" id="dots" style="position: relative;bottom: 25px;">
+            <a id="img-1"></a>
+            <a id="img-2"></a>
+            <a id="img-3"></a>
+            <a id="img-4"></a>
+            <a id="img-5"></a>
+            <a id="img-6"></a>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 10px; width: 100%;">
+        <h2>Introducing Our Team</h2>
+      </div>      
+    <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="{% static '/main/images/bed.png' %}" style="width:100%">
+            <div class="container1">
+              <p class="title">Nandan</p>
+              <p class="subtitle">yuewkjdmnw sbhkdg dhkh wbyuqgdjkqwghdj wbdhqwd jkqvdvqhj dgh</p>
+              <p class="info">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="{% static '/main/images/doctor.png' %}" style="width:100%">
+            <div class="container1">
+              <p class="title">Sudeep</p>
+              <p class="subtitle">sajkhdkasjbdj cj HASKBSHJBS ACHJK DJHhj bjhee hjbwmdhbjd</p>
+              <p class="info">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="{% static '/main/images/equi.png' %}" style="width:100%">
+            <div class="container1">
+              <p class="title">Anurag</p>
+              <p class="subtitle">jkbdwkej hdiewjkdb weiuhdb qiuhdbkqjhbdyuwhjdvwej djhbduwebd</p>
+              <p class="info">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row" id="rows">
+        <div class="column">
+            <div class="card">
+              <img src="{% static '/main/images/equi.png' %}" style="width:100%">
+              <div class="container1">
+                <p class="title">Madhu</p>
+                <p class="subtitle">jkbdwkej hdiewjkdb weiuhdb qiuhdbkqjhbdyuwhjdvwej djhbduwebd</p>
+                <p class="info">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+              </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+              <img src="{% static '/main/images/equi.png' %}" style="width:100%">
+              <div class="container1">
+                <p class="title">Chaitanya</p>
+                <p class="subtitle">jkbdwkej hdiewjkdb weiuhdb qiuhdbkqjhbdyuwhjdvwej djhbduwebd</p>
+                <p class="info">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+              </div>
+            </div>
+        </div>
+    </div>
+      <div class="AbtHosp first">
+        <div class="hemi">
+            <div style="padding: 55px;">
+              <img src="{% static '/main/images/caryoun.png' %}" style="width:80%;border-radius: 20px;">
+            </div>
+          </div>
+        <div class="hemi">
+              <div class="container2">
+                <p class="title2">Child Care</p>
+                <p class="subtitle2">yuewkjdmnw sbhkdg dhkh wbyuqgdjkqwghdj wbdhqwd jkqvdvqhj dgh</p>
+                <p class="info2">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="AbtHosp second">
+        <div class="hemi">
+            <div style="padding: 55px;">
+              <img src="{% static '/main/images/carold.png' %}" style="width:80%;border-radius: 20px;">
+            </div>
+          </div>
+        <div class="hemi">
+              <div class="container2">
+                <p class="title2">Caring Oldaged</p>
+                <p class="subtitle2">yuewkjdmnw sbhkdg dhkh wbyuqgdjkqwghdj wbdhqwd jkqvdvqhj dgh</p>
+                <p class="info2">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="AbtHosp third">
+        <div class="hemi">
+            <div style="padding: 55px;">
+              <img src="{% static '/main/images/247serv.png' %}" style="width:80%;border-radius: 20px;">
+            </div>
+          </div>
+        <div class="hemi">
+              <div class="container2">
+                <p class="title2">24/7 Service</p>
+                <p class="subtitle2">yuewkjdmnw sbhkdg dhkh wbyuqgdjkqwghdj wbdhqwd jkqvdvqhj dgh</p>
+                <p class="info2">wsertyuiojhgcvb ugqwuid gkqw gdiyqwkhvd yuqvdqhwdfvhqwdv yqwjghvd jhqwgdvjqhd vyuqdqw dyvf qwuhjdfqyghdv qwtdvqwhjfcjqwgmhdvqjyghdv qjydfvqw jhfqvhgdfdghqwfdjvygh</p>
+              </div>
+          </div>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Hospital</h4>
+                    <ul>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Services</a></li>
+                        <li><a href="">Staff</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get help</h4>
+                    <ul>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Support</a></li>
+                        <li><a href="">Status</a></li>
+                        <li><a href="">Patient Info</a></li>
+                        <li><a href="">Contact doctor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Payment</h4>
+                    <ul>
+                        <li><a href="">Patient Info</a></li>
+                        <li><a href="">Payment options</a></li>
+                        <li><a href="">Payment Details</a></li>
+                        <li><a href="">Payment Subsidy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow us</h4>
+                    <div class="social-links">
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href=""><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+      const imageElements = [];
+for (let i = 1; i <= 12; i++) {
+  imageElements.push(document.getElementById(`img-${i}`));
+}
+let currentImageIndex = 0;
+const images = document.querySelectorAll(".ImgContainer .imgs");
+const ImgContainer = document.getElementById('ImgComtainer');
+const dots = document.getElementById('dots');
+dots.addEventListener('click', (event) => {
+  const clickedId = event.target.id;
+  const cha = clickedId.charAt(4);
+  const intValue = parseInt(cha, 10);
+  images[currentImageIndex].style.display = "none";
+  currentImageIndex = (intValue - 1) % images.length;
+  for (let i = 1; i <=6; i++) {
+    imageElements[i + 5].style.display = i == intValue ? 'block' : 'none';
+}
+});
+const lessthan = document.getElementById('lessthan');
+const greaterthan = document.getElementById('greaterthan');
+lessthan.addEventListener('click', () => {
+  images[currentImageIndex].style.display = "none";
+  currentImageIndex = (currentImageIndex + 5) % images.length;
+  images[currentImageIndex].style.display = "block";
+});
+greaterthan.addEventListener('click', () => {
+    showNextImage();
+  });
+  function showNextImage() {
+    images[currentImageIndex].style.display = "none";
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].style.display = "block";
+  }
+  images[currentImageIndex].style.display = "block";
+  setInterval(showNextImage, 4000);
+  function updateWindowSize() {
+    document.documentElement.style.setProperty('--window-width', window.innerWidth + 'px');
+}
+    </script>
+  </body>
+</html>

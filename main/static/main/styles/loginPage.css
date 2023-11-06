@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.mobile-content,
+.desktop-content {
+  display: none;
+}
+@media (max-width: 1150px) {
+body {
+	background: #f6f5f7;
+	display: flex;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
+    margin-left: calc(50% - 180px);
+}
+.mobile-content{
+    display: block;
+    display: flex;
+    width: 360px;
+}
+form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 480px;
+	text-align: center;
+}
+.SuperContainer1 {
+	background-color: #fff;
+	border-radius: 10px;
+	top: 50px;
+	left: calc(50% - 180px);
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 360px;
+	min-width: 360px;
+	min-height: 1440px;
+}
+.Formcontainer {
+	position: absolute;
+	top: 0;
+	left: 0px;
+	height: 480px;
+	transition: all 0.6s ease-in-out;
+	z-index: 1;
+	opacity: 1;
+}
+.Facultycontainer {
+	top: -480px;
+	width: 100%;
+}
+.Admincontainer {
+	top: 1440px;
+	width: 100%;
+}
+.Studentcontainer {
+	top: 480px;
+	left: -360px;
+	width: 100%;
+}
+@keyframes show {
+	0%{	opacity: 0;	left: -360px;}
+	 100% {	left: 0;opacity: 1;}
+}
+.Overlaycontainer {
+	position: absolute; 
+	top: 0;
+	left: calc(50% - 180px);
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 1s ease-in-out;
+	z-index: 20;
+} 
+@keyframes forinitial {
+  0%   {opacity: 0;left: -360px;}
+  100% {left: 0px;opacity: 1;}
+}
+.Overlay2 {
+	background: #FF416C;
+	background: -webkit-linear-gradient(to bottom, #FF4B2B, #FF416C);
+	background: linear-gradient(to bottom, #FF4B2B, #FF416C);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	z-index: 40;
+	opacity: 1;
+	animation-name: forinitial;
+    animation-duration: 2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+.SuperContainer1.small-very-initial .Formcontainer ,.SuperContainer1.small-very-initial .Overlaycontainer{
+	opacity: 0;
+}
+@keyframes forinitial2 {
+  0%   {opacity: 1;left: 0px;}
+  100% {left: 360px;opacity: 0;}
+}
+.SuperContainer1.small-after-very-initial .Overlay2{
+	animation-name: forinitial2;
+    animation-duration: 2s;
+	left: 360px;
+}
+@keyframes forinitial3 {
+  0%   {opacity: 0;zoom: 0;}
+  100% {opacity: 1; zoom: 100%;}
+}
+.SuperContainer1.small-after-very-initial .Overlaypanel{
+	animation-name: forinitial3;
+    animation-duration: 2s;
+}
+@keyframes formainhead {
+  0%   {opacity: 0;font-size: 200px;}
+  100% {font-size: 80px;opacity: 1;}
+}
+.mainhead{
+	font-size: 80px;
+	animation-name: formainhead;
+    animation-duration: 3s;
+}
+.Overlay {
+	z-index: 20;
+	background: #FF416C;
+	background: -webkit-linear-gradient(to bottom, #FF4B2B, #FF416C);
+	background: linear-gradient(to bottom, #FF4B2B, #FF416C);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+  	transform: translateX(0);
+	transition: transform 1s ease-in-out;
+}
+.Overlaypanel {
+	z-index: 20;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 480px;
+	width: 100%;
+	transform: translateX(0);
+	transition: transform 1s ease-in-out;
+}
+.left{
+	left: 0px;
+}
+.mid{
+	top: 480px;
+}
+.right{
+	top: 960px;
+}
+.SuperContainer1.top-panel-active .left  {
+	transform: translateY(-100%);
+}
+.SuperContainer1.top-panel-active .Facultycontainer  {
+	transform: translateY(480px);
+	z-index: 25;
+	transition: transform 1s ease-in-out;
+}
+.SuperContainer1.bottom-panel-active .Admincontainer {
+	transform: translateY(-480px);
+	z-index: 25;
+	transition: transform 1s ease-in-out;
+}
+.SuperContainer1.bottom-panel-active .Studentcontainer {
+	transform: translateX(-360px);
+	transition: transform 1s;
+}
+.SuperContainer1.bottom-panel-active .Overlay {
+  	transform: translateY(calc(-100% / 3));
+}
+.SuperContainer1.bottom-panel-active .left , .SuperContainer1.bottom-panel-active .mid {
+	transform: translateY(100%);
+}
+.SuperContainer1.bottom-panel-active .right {
+	transform: translateY(200%);
+}
+.SuperContainer1.center-panel-active .Admincontainer {
+	transform: translateY(480px);
+}
+.SuperContainer1.center-panel-active .Studentcontainer {
+	z-index: 21;
+	transform: translateX(360px);
+	transition: transform 1s;
+}
+.SuperContainer1.center-panel-active .left , .SuperContainer1.center-panel-active .right {
+	transform: translateX(0%);
+}
+.SuperContainer1.center-panel-active .mid {
+	transform: translateX(100%);
+}
+}
+@media (min-width: 1150px) {
+  .desktop-content {
+    display: block;
+  }
+body {
+    display: flex;
+	background: #f6f5f7;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
+}
+.desktop-content{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}  
+form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+.SuperContainer {
+    top: 30px;
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 1152px;
+	min-width: 1152px;
+	min-height: 480px;
+}
+.Formcontainer {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 1s ease-in-out;
+}
+.Facultycontainer {
+	left: 0;
+	width: calc(100% / 3);
+	z-index: 1;
+}
+.Admincontainer {
+	left: 0;
+	width: calc(100% / 3);
+	opacity: 1;
+	z-index: 0;
+}
+.Studentcontainer {
+	left: 384px;
+	top: 200vh;
+	width: calc(100% / 3);
+	opacity: 0;
+	z-index: 25;
+}
+@keyframes show {
+	0%, 49.99% {
+		opacity: 0;
+		z-index: 0;
+	}
+	50%, 100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+.Overlaycontainer {
+	position: absolute; 
+	top: 0;
+	left: calc(100% / 3);
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 1s ease-in-out;
+	z-index: 20;
+} 
+.Overlay2 {
+	background: #FF416C;
+	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+  	transform: translateX(0);
+	transition: transform 1s ease-in-out;
+}
+.Overlay {
+	z-index: 20;
+	background: #FF416C;
+	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+  	transform: translateX(0);
+	transition: transform 1s ease-in-out;
+}
+@keyframes desforinitial {
+  0%   {opacity: 0;left: -1152px;}
+  100% {left: 0px;opacity: 1;}
+}
+@keyframes formainhead {
+  0%   {opacity: 0;font-size: 200px;}
+  100% {font-size: 100px;opacity: 1;}
+}
+@keyframes desforinitial2 {
+  0%   {opacity: 1;left: 0px;}
+  100% {left: 1152px;opacity: 0;}
+}
+.Overlay3 {
+	background: #FF416C;
+	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	z-index: 40;
+	opacity: 1;
+	animation-name: desforinitial;
+    animation-duration: 2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+.SuperContainer.very-initial .Formcontainer ,.SuperContainer.very-initial .Overlaycontainer{
+	opacity: 0;
+}
+.SuperContainer.after-very-initial .Overlay3{
+	animation-name: desforinitial2;
+    animation-duration: 2s;
+	left: 1152px;
+}
+#mainhead{
+	font-size: 100px;
+	animation-name: formainhead;
+    animation-duration: 3s;
+}
+.Overlaypanel {
+	z-index: 20;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: calc(100% / 3);
+	transform: translateX(0);
+	transition: transform 1s ease-in-out;
+}
+.left {
+	transform: translateX(-100%);
+}
+.mid {
+	left: calc(100% / 3);
+	transform: translateX(-100%);
+}
+.right {
+	right: 0;
+	transform: translateX(-100%);
+}
+.SuperContainer.right-panel-active .Facultycontainer {
+	transform: translateX(200%);
+	opacity: 0;
+	z-index:-1;
+}
+.SuperContainer.right-panel-active .Admincontainer {
+	transform: translateX(200%);
+	opacity: 1;
+	z-index: 25;
+	animation: show 1s;
+}
+.SuperContainer.right-panel-active .Overlaycontainer , .SuperContainer.mid-panel-active .Overlaycontainer{
+	transform: translateX(-384px);
+}
+.SuperContainer.right-panel-active .Overlay , .SuperContainer.right-panel-active .Overlay2 {
+  	transform: translateX(calc(-100% / 3));
+}
+.SuperContainer.right-panel-active .left , .SuperContainer.right-panel-active .mid {
+	transform: translateX(100%);
+}
+.SuperContainer.right-panel-active .right {
+	transform: translateX(200%);
+}
+.SuperContainer.mid-panel-active .Facultycontainer {
+	transform: translateX(100%);
+	opacity: 0;
+}
+.SuperContainer.mid-panel-active .Admincontainer {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 1s;
+}
+.SuperContainer.mid-panel-active .Studentcontainer {
+	top:0;
+	left: 384px;
+	opacity: 1;
+	z-index: 25;
+	animation: show2 1s;
+}
+.SuperContainer.mid-panel-active .left , .SuperContainer.mid-panel-active .right {
+	transform: translateX(0%);
+}
+.SuperContainer.mid-panel-active .mid {
+	transform: translateY(100%);
+}
+@keyframes formid {
+  0%   {opacity: 0;top: 100vh;}
+  100% {top: 0vh;opacity: 1;}
+}
+@keyframes forleft {
+  0%   {opacity: 0;left: -384px;}
+  100% {left: 0px;opacity: 1;}
+}
+@keyframes forright {
+  0%   {opacity: 0;left: 1152px;}
+  100% {left: 768px;opacity: 1;}
+}
+.SuperContainer.initial-panel-active .Admincontainer {
+    opacity: 0;
+}
+.SuperContainer.initial-panel-active .Facultycontainer {
+	opacity: 0;
+}
+.SuperContainer.initial-panel-active .Studentcontainer {
+    opacity: 0;
+}
+.SuperContainer.initial-panel-active .Overlaycontainer{
+	transform: translateX(-384px);
+    animation-name: formid;
+    animation-duration: 3s;
+}
+.SuperContainer.initial-panel-active .left {
+	transform: translateX(0%);
+    animation-name: forleft;
+    animation-duration: 4s;
+}
+.SuperContainer.initial-panel-active .right {
+	transform: translateX(0%);
+    animation-name: forright;
+    animation-duration: 4s;
+}
+.SuperContainer.initial-panel-active .mid {
+	transform: translateX(0%);
+    animation-name: formid;
+    animation-duration: 4s;
+}
+}
+* {
+	box-sizing: border-box;
+}
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+h2 {
+	text-align: center;
+}
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+span {
+	font-size: 12px;
+}
+a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+pre {
+    font-family: 'Montserrat', sans-serif;
+    left:0;
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+button {
+	border-radius: 20px;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+button:hover{
+    cursor: pointer;
+}
+button:active {
+	transform: scale(0.9);
+}
+button:focus {
+	outline: none;
+}
+button {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+input[type=submit] {
+    width: 50%;
+    cursor: pointer;
+	border-radius: 20px;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+input[type=email],input[type=number],input[type=password],input[type=text] {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+input[type=checkbox] {
+	background-color: #eee;
+	border: none;
+	padding: 0 ;
+	margin: 0;
+    left:0;
+}

@@ -1,0 +1,178 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block links %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'main/styles/announce.css' %}">
+<style>
+          .caer {   
+            position: absolute;
+            top: 0;
+            width: 250px;
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        #pdf {
+            width: 250px;
+            border-radius: 10px;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        p {
+            padding: 0px 30px;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+            color: rgba(0, 0, 0, 0.556);
+        }
+        .forIframe{
+            background-color: rgba(255, 0, 0, 0);
+            width: 230px;
+            height: 150px;
+            z-index: 5;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            border-radius: 8px;
+            /* border: solid #555555; */
+            border: solid #fff;
+            border-width: 0 20px 0px 0px;
+            cursor: pointer;
+        }
+        .cadg{
+          position: relative;
+            width: 250px;
+            height: 193px;
+            padding: 0px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="Header">
+        <div class="left">
+          <a href="{% url 'home' %}"
+            ><i
+              class="fa fa-home home"
+              style="color: rgba(0, 0, 0, 0.556); font-size: 20px"
+            ></i
+          ></a>
+        </div>
+        <div class="mid"></div>
+        <div class="right"><a href="contact.html">Calender</a></div>
+        <div class="right"><a href="about.html">Courses</a></div>
+        <div class="right">
+          <a href="gallery.html" target="_self">Contact</a>
+        </div>
+        <div class="right"><a href="calender.html">Calender</a></div>
+      </div>
+
+          <div class="Announcement">
+            <div class="leftSide"><a class="prev" id="next" href="">❮</a></div>
+            <div class="body">
+                <span class="pull-left"><span class="date"><span>{{date}}</span> <small>{{month}}</small></span></span>
+                <span class="pull-mid"><span class="title"><div class="titlediv">{{Announcement.title}}</div></span></span>
+                <div class="content">
+                    <b id="ids">{{Announcement.id}}</b>
+                    <b id="maxi">{{max}}</b>
+                  <h3>{{Announcement.body}}</h3>
+                    <div>
+                      <div class="files" style="display: flex;width:90vw;flex-wrap: wrap;margin-top: 40px;">
+                        {% for file in Announcement.files.all %}
+                        <div class="cadg" onclick="openPdfPopup('{{file.file.url}}')">
+                          <div class="caer">
+                              <iframe id="pdf" src="{{ file.file.url }}" frameborder="0"></iframe>
+                              <p>{{file.file.name|cut:"announce/"}} <a href="{{ file.file.url }}" download><i class="fa fa-download" style="float: right;"></i></a></p>
+                          </div>
+                          <div class="forIframe" onclick="openPdfPopup('{{file.file.url}}')">
+                          </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <div id="pdfModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closePdfPopup()">&times;</span>
+                            <iframe id="pdfIframe" src="" style="width: 100%; height: 100vh; border: none;"></iframe>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightSide"><a class="next" id="prev" href="" >❯</a></div>
+          </div>
+    </div>
+{% endblock body %}
+
+{% block js %}
+<script>
+  function openPdfPopup(pdfFileName) {
+    var closeBtn = document.getElementsByClassName("close");
+    closeBtn[0].style.display ="block";
+    document.getElementById('pdfIframe').src = pdfFileName;
+    document.getElementById('pdfModal').style.display = 'block';
+}
+
+function closePdfPopup() {
+    var closeBtn = document.getElementsByClassName("close");
+    closeBtn[0].style.display ="none";
+    document.getElementById('pdfModal').style.display = 'none';
+    document.getElementById('pdfIframe').src = '';
+}
+</script>
+<script src="{% static 'main/script/announce.js' %}"></script>
+{% endblock %}

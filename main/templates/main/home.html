@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block links %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'main/styles/home.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="Header">
+    <div class="left">
+      <a href="new.html"
+        ><i
+          class="fa fa-home home"
+          style="color: rgba(0, 0, 0, 0.556); font-size: 20px"
+        ></i
+      ></a>
+    </div>
+    <div class="mid"></div>
+    <div class="right"><a href="contact.html">Calender</a></div>
+    <div class="right"><a href="about.html">Courses</a></div>
+    <div class="right">
+      <a href="gallery.html" target="_self">Contact</a>
+    </div>
+    <div class="right">
+      <div class="dropdown">
+        <a style="padding: 15px;border: 0;margin: 0;"><img src="{% static '/main/images/male.png' %}" alt="profilepic" style="width: 48.5px;"></a>
+        <div class="dropdown-content">
+          <a href="#">Profile</a>
+          <a href="#">Login</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="AbtInstu">
+    <div class="Announ">
+<div class="ImgContainer" id="ImgContainer">
+  <div id="img-7" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1466853817435-05b43fe45b39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2198&q=80);"></div>
+  <div id="img-8" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80);"></div>
+  <div id="img-9" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2842&q=80);"></div>
+  <div id="img-10" class="imgs" style="display: none; background-image: url('imgs/college.jpg');"></div>
+  <div id="img-11" class="imgs" style="display: none; background-image: url('imgs/college2.jpeg');"></div>
+  <div id="img-12" class="imgs" style="display: none; background-image: url('imgs/college3.jpeg');"></div>
+</div>
+
+<div class="dots" id="dots">
+  <a id="img-1"></a>
+  <a id="img-2"></a>
+  <a id="img-3"></a>
+  <a id="img-4"></a>
+  <a id="img-5"></a>
+  <a id="img-6"></a>
+</div>
+</div></div>
+<div class="Announcements-container">
+  <div class="Announcements">
+    {% for Announcement in announcements %}
+    <div class="Announcement" data-announcement-id="{{Announcement.id}}" style="cursor: pointer;">
+      <div class="Announcement__header">
+            <div class="avatar avatar--small">
+                <img src="{{Announcement.user.avatar.url}}" />
+            </div>
+            <span>By : {{Announcement.host}}</span>
+        <div class="Announcement__actions">
+            <span>{{Announcement.created|timesince}} ago</span>
+        </div>
+        </div>
+        <hr style="border: 1px solid grey; margin-left: -15px; margin-right: -15px;">
+        <div style="color: white; font-size: larger; font-family:'Courier New', Courier, monospace; border: 0;margin: 0;padding: 0;padding-top: 15px;  text-transform: capitalize;">{{Announcement.title|slice:":50"}}</div>
+       <div class="Announcement__content">
+         <b class="announcement_content">{{Announcement.body|slice:":100"}}</b><a href="/home/announcements/{{Announcement.id}}"><b id="showmore">..showmore</b></a>
+        </div>
+      </div>
+    {% endfor %}  
+<div class="add-event-wrapper">
+<div class="add-event-header">
+<div class="title"><pre>   Add Event</pre></div>
+<i class="fas fa-times close"></i>
+</div>
+<div class="add-event-body">
+<div class="add-event-input">
+  <input type="text" placeholder="Title" class="event-name" />
+</div>
+<div class="add-event-input">
+  <input
+    type="text"
+    placeholder="Description"
+    class="event-time-from"
+  />
+</div>
+<div>
+  <label for="images" class="drop-container" id="dropcontainer">
+    <span class="drop-title">Drop files here</span>
+    or
+    <input type="file" id="fileInput"  multiple>
+  </label>
+</div>
+</div>
+<div class="add-event-footer">
+<button class="add-event-btn">Add Event</button>
+</div>
+</div>
+</div>
+<div>
+<div id="load-more-button" style="position: absolute;bottom: 0px;left: 30px;float: left; background-color: #87878796;color: #655f5f; cursor: pointer; padding: 10px 20px; width: 115px; border-radius: 20px;">Load More</div>
+<button class="add-event">
+<i class="fas fa-plus"></i>
+</button>
+</div>
+</div>
+
+</div>
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'main/script/home.js' %}"></script>
+{% endblock %}

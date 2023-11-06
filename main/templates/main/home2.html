@@ -1,0 +1,671 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      *{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+body{
+  background-color: #ffffff;
+}
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .AbtInstu {
+        padding: 10px;
+        flex: 60%;
+        width: calc(var(--window-width) * 0.65);
+        height:620px;
+        position: relative;
+      }
+      .Announ{
+        height:600px;
+      }
+      .Announcements {
+        background-color: #ffffff;
+        padding: 10px;
+        flex: 35%;
+        border: 2px solid #000;
+        border-radius: 5px;
+        width: calc(var(--window-width) * 0.35);;
+        min-height: 600px;
+        overflow-y: scroll;
+      }
+      .Header {
+        display: flex;
+        flex: 100%;
+      }
+      .left {
+        flex: 5%;
+      }
+      .right {
+        flex: 5%;
+      }
+      .mid {
+        flex: 75%;
+        background-color: #ffffff;
+      }
+      .Header a {
+        display: block;
+        background-color: rgb(255, 255, 255);
+        list-style-type: none;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: rgba(0, 0, 0, 0.556);
+        text-align: center;
+        font-size: 20px;
+        padding: 30px 30px;
+        text-decoration: none;
+      }
+      .Header a:hover {
+        transition: 0.5s;
+        background-color: rgba(0, 0, 0, 0.556);
+        color: rgb(255, 255, 255);
+      }
+.ImgContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  max-width: var(--slide-width);
+  border: 5px solid #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-radius: 5px;
+}
+.ImgContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.imgs {
+  border-radius: 5px;
+  scroll-snap-align: start;
+  width: 100%;
+  height:100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation-name:none;
+}
+
+.dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 15px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dots a {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+  cursor: pointer;
+}
+.dots a:hover {
+  opacity: 1;
+}
+.Announcement {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: #8FC0C3;
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 2px solid #000;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.Announcement__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5px;
+}
+
+.Announcement__actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.Announcement__actions span {
+  font-size: 1rem;
+  
+}
+.Announcement__content {
+  margin: 1rem 0;
+}
+
+.Announcement__content a , .Announcement__content b {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  color: var(--color-light);
+  transition: all 0.3s ease-in-out;
+}
+
+.Announcement__content a:hover {
+  color: var(--color-main);
+  text-decoration: underline;
+}
+:root {
+  --color-main: #71c6dd;
+  --color-light: #e5e5e5;
+  --color-dark: #3f4156;
+  --primary-clr: #b38add;
+}
+.add-event {
+  position: absolute;
+  bottom: 100px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #878895;
+  border: 2px solid #878895;
+  opacity: 0.5;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+.add-event:hover {
+  opacity: 1;
+}
+.add-event i {
+  pointer-events: none;
+}
+.events .no-event {
+  width: 100%;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #878895;
+}
+.add-event-wrapper {
+  right: 20px;
+  position: absolute;
+  bottom: 60px;
+  width: 90%;
+  max-height: 0;
+  overflow-y: scroll;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.add-event-wrapper.active {
+  max-height: 300px;
+}
+.add-event-header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #373c4f;
+  border-bottom: 1px solid #f5f5f5;
+}
+.add-event-header .close {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.add-event-header .close:hover {
+  color: var(--primary-clr);
+}
+.add-event-header .title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.add-event-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
+.add-event-body .add-event-input {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.add-event-body .add-event-input input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #373c4f;
+}
+.add-event-body .add-event-input input::placeholder {
+  color: #a5a5a5;
+}
+.add-event-body .add-event-input input:focus {
+  border-bottom: 1px solid var(--primary-clr);
+}
+.add-event-body .add-event-input input:focus::placeholder {
+  color: var(--primary-clr);
+}
+.add-event-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.add-event-footer .add-event-btn {
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: var(--primary-clr);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid var(--primary-clr);
+}
+.add-event-footer .add-event-btn:hover {
+  background-color: transparent;
+  color: var(--primary-clr);
+}
+.add-event {
+    position: absolute;
+    bottom: 0px;
+    right: 30px;
+}
+.Announcements-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    position: relative; 
+    padding: 10px;
+    height: 600px ;
+}
+.drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover,
+.drop-container.drag-active {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title,
+.drop-container.drag-active .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+#showmore{
+  color: var(--color-main);
+}
+#showmore:hover{
+  color: var(--color-light);
+}
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+input[type=file]::file-selector-button:hover {
+  background: #0d45a5;
+}
+
+      @media (max-width: 1200px) {
+        .AbtInstu,
+        .Announcements {
+          flex: 100%;
+          width: calc(var(--window-width) * 1) ;
+          max-height: 480px;
+        }
+        .Announcements-container{
+          width: calc(var(--window-width) * 0.984);; 
+        }
+      }
+      .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  right: 0;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: rgba(0, 0, 0, 0.556);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {background-color: rgba(0, 0, 0, 0.556);color: white;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="Header">
+        <div class="left">
+          <a href="{% url 'home' %}"
+            ><i
+              class="fa fa-home home"
+              style="color: rgba(0, 0, 0, 0.556); font-size: 20px"
+            ></i
+          ></a>
+        </div>
+        <div class="mid"></div>
+        <div class="right"><a href="{% url 'calendar' %}">Calender</a></div>
+        <div class="right"><a href="{% url 'courseSelect' %}">Courses</a></div>
+        <div class="right">
+          <a href="gallery.html" target="_self">Contact</a>
+        </div>
+        <div class="right">
+          <div class="dropdown">
+            <a style="padding: 15px;border: 0;margin: 0;"><img src="{% static '/main/images/male.png' %}" alt="profilepic" style="width: 48.5px;"></a>
+            <div class="dropdown-content">
+              <a href="{% url 'profile' %}">Profile</a>
+              {% if not user.is_authenticated %}
+              <a href="{% url 'login' %}">Login</a>
+              {% else %}
+              <a href="{% url 'logout' %}">Logout</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="AbtInstu">
+        <div class="Announ">
+    <div class="ImgContainer" id="ImgContainer">
+      <div id="img-7" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1466853817435-05b43fe45b39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2198&q=80);"></div>
+      <div id="img-8" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80);"></div>
+      <div id="img-9" class="imgs" style="display: none; background-image: url(https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2842&q=80);"></div>
+      <div id="img-10" class="imgs" style="display: none; background-image: url('imgs/college.jpg');"></div>
+      <div id="img-11" class="imgs" style="display: none; background-image: url('imgs/college2.jpeg');"></div>
+      <div id="img-12" class="imgs" style="display: none; background-image: url('imgs/college3.jpeg');"></div>
+    </div>
+  
+    <div class="dots" id="dots">
+      <a id="img-1"></a>
+      <a id="img-2"></a>
+      <a id="img-3"></a>
+      <a id="img-4"></a>
+      <a id="img-5"></a>
+      <a id="img-6"></a>
+    </div>
+    <p id="greaterthan" style="user-select:none; position: absolute;top: 50%;right: 0px; background-color: gray;color: white; padding:15px 10px;border-radius: 10px;cursor: pointer; font-size: 20px;opacity:0.5">&gt;</p>
+          <p id="lessthan" style="user-select:none;position: absolute;top: 50%;left: 0px; background-color: gray;color: white; padding:15px 10px;border-radius: 10px;cursor: pointer; font-size: 20px;opacity:0.5">&lt;</p>
+  </div></div>
+  <div class="Announcements-container">
+      <div class="Announcements">
+        {% for Announcement in announcements %}
+        <div class="Announcement" data-announcement-id="{{Announcement.id}}" style="cursor: pointer;">
+          <div class="Announcement__header">
+                <div class="avatar avatar--small">
+                    <img src="{{Announcement.user.avatar.url}}" />
+                </div>
+                <span>By : {{Announcement.host}}</span>
+            <div class="Announcement__actions">
+                <span>{{Announcement.created}} </span>
+            </div>
+            </div>
+            <hr style="border: 1px solid grey; margin-left: -15px; margin-right: -15px;">
+            <div style="color: white; font-size: larger; font-family:'Courier New', Courier, monospace; border: 0;margin: 0;padding: 0;padding-top: 15px;  text-transform: capitalize;">{{Announcement.title|slice:":50"}}</div>
+           <div class="Announcement__content">
+             <b class="announcement_content">{{Announcement.body|slice:":100"}}</b><a href="/home/announcements/{{Announcement.id}}"><b id="showmore">..showmore</b></a>
+            </div>
+          </div>
+        {% endfor %}  
+<div class="add-event-wrapper">
+  <div class="add-event-header">
+    <div class="title"><pre>   Add Announcement</pre></div>
+    <i class="fas fa-times close"></i>
+  </div>
+  <form method = "POST" action = "" enctype="multipart/form-data" >
+    {% csrf_token %}
+  <div class="add-event-body">
+    <div class="add-event-input">
+
+      <input type="text" name="title" placeholder="Title" class="event-name" />
+    </div>
+    <div class="add-event-input" >
+      <input
+      name = "body"
+        type="text"
+        placeholder="Description"
+        class="event-time-from"
+      />
+    </div>
+    <div>
+      <label for="images" class="drop-container" id="dropcontainer">
+        <span class="drop-title">Drop files here</span>
+        or
+        <input type="file" name="fileinput" id="fileInput"  multiple>
+      </label>
+    </div>
+  </div>
+  <div class="add-event-footer">
+    
+    <button type="submit" class="add-event-btn">Add Announcement</button>
+    
+  </div>
+</div>
+</div>
+</form>
+<div>
+    <div id="load-more-button" style="position: absolute;bottom: 0px;left: 30px;float: left; background-color: #87878796;color: #655f5f; cursor: pointer; padding: 10px 20px; width: 115px; border-radius: 20px;">Load More</div>
+    <button class="add-event">
+    <i class="fas fa-plus"></i>
+    </button>
+    </div>
+</div>
+
+</div>
+
+
+<script>
+  addEventBtn = document.querySelector(".add-event");
+  addEventWrapper = document.querySelector(".add-event-wrapper ");
+  addEventCloseBtn = document.querySelector(".close ");
+  addEventTitle = document.querySelector(".event-name ");
+  addEventBtn.addEventListener("click", () => {
+  addEventWrapper.classList.toggle("active");
+});
+
+addEventCloseBtn.addEventListener("click", () => {
+  addEventWrapper.classList.remove("active");
+});
+const BodyCapita = document.querySelectorAll(".announcement_content");
+BodyCapita.forEach((obj) => {
+  const text = obj.textContent;
+  if (text.length > 0) {
+    obj.textContent = text.charAt(0).toUpperCase() + text.slice(1);
+  }
+});
+document.addEventListener("click", (e) => {
+  if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
+    addEventWrapper.classList.remove("active");
+  }
+});
+
+addEventTitle.addEventListener("input", (e) => {
+  addEventTitle.value = addEventTitle.value.slice(0, 60);
+});
+const imageElements = [];
+for (let i = 1; i <= 12; i++) {
+  imageElements.push(document.getElementById(`img-${i}`));
+}
+let currentImageIndex = 0;
+const images = document.querySelectorAll(".ImgContainer .imgs");
+const ImgContainer = document.getElementById('ImgComtainer');
+const dots = document.getElementById('dots');
+dots.addEventListener('click', (event) => {
+  const clickedId = event.target.id;
+  const cha = clickedId.charAt(4);
+  const intValue = parseInt(cha, 10);
+  images[currentImageIndex].style.display = "none";
+  currentImageIndex = (intValue - 1) % images.length;
+  for (let i = 1; i <=6; i++) {
+    imageElements[i + 5].style.display = i == intValue ? 'block' : 'none';
+}
+});
+const lessthan = document.getElementById('lessthan');
+const greaterthan = document.getElementById('greaterthan');
+lessthan.addEventListener('click', () => {
+  images[currentImageIndex].style.display = "none";
+  currentImageIndex = (currentImageIndex + 5) % images.length;
+  images[currentImageIndex].style.display = "block";
+});
+greaterthan.addEventListener('click', () => {
+    showNextImage();
+  });
+  function showNextImage() {
+    images[currentImageIndex].style.display = "none";
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].style.display = "block";
+  }
+  images[currentImageIndex].style.display = "block";
+  setInterval(showNextImage, 4000);
+  function updateWindowSize() {
+    document.documentElement.style.setProperty('--window-width', window.innerWidth + 'px');
+}
+window.addEventListener('load', updateWindowSize);
+window.addEventListener('resize', updateWindowSize);
+const dropContainer = document.getElementById("dropcontainer");
+const fileInput = document.getElementById("images");
+
+dropContainer.addEventListener("dragover", e => {
+  e.preventDefault();
+}, false);
+
+dropContainer.addEventListener("dragenter", () => {
+  dropContainer.classList.add("drag-active");
+});
+
+dropContainer.addEventListener("dragleave", () => {
+  dropContainer.classList.remove("drag-active");
+});
+
+dropContainer.addEventListener("drop", e => {
+  e.preventDefault();
+  dropContainer.classList.remove("drag-active");
+  fileInput.files = e.dataTransfer.files;
+});
+const announcementonclick = document.querySelectorAll('.Announcement');
+
+announcementonclick.forEach(function(div) {
+  div.addEventListener('click', function() {
+    const announcementId = div.getAttribute('data-announcement-id');
+    const url = `/home/announcements/${announcementId}`;
+    window.location.href = url;
+  });
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const announcementsContainer = document.querySelector(".Announcements");
+    const loadMoreButton = document.getElementById("load-more-button");
+    const announcements = document.querySelectorAll(".Announcement");
+    let visibleAnnouncements = 3;
+    const announcementsPerPage = 3; 
+    function toggleAnnouncementVisibility() {
+      for (let i = 0; i < announcements.length; i++) {
+        if (i < visibleAnnouncements) {
+          announcements[i].style.display = "block";
+        } else {
+          announcements[i].style.display = "none";
+        }
+      }
+    }
+    toggleAnnouncementVisibility();
+    loadMoreButton.addEventListener("click", function() {
+      visibleAnnouncements += announcementsPerPage;
+      toggleAnnouncementVisibility();
+      if (visibleAnnouncements >= announcements.length) {
+        loadMoreButton.style.display = "none";
+      }
+    });
+  });
+    </script>
+  </body>
+</html>

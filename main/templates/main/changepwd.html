@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #f6f5f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: "Montserrat", sans-serif;
+        height: 100vh;
+        margin: -20px 0 50px;
+      }
+      h2 {
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin: 20px 0 20px;
+      }
+      a {
+        color: #333;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 15px 0;
+        cursor: pointer;
+      }
+      pre {
+        font-family: "Montserrat", sans-serif;
+        left: 0;
+        color: #333;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 15px 0;
+      }
+
+      button {
+        border-radius: 20px;
+        border: 1px solid #ff4b2b;
+        background-color: #ff4b2b;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+      button:active {
+        transform: scale(0.9);
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      button {
+        background-color: transparent;
+        border-color: #ffffff;
+      }
+      input[type="submit"] {
+        width: 50%;
+        cursor: pointer;
+        border-radius: 20px;
+        border: 1px solid #ff4b2b;
+        background-color: #ff4b2b;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+      }
+
+      /* form {
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        text-align: center;
+      } */
+      input[type="password"]{
+        background-color: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 4px 0;
+        width: 100%;
+        border-radius: 20px;
+      }
+
+      .SuperContainer {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 360px;
+        top: 25px;
+        max-width: 100%;
+        min-height: 600px;
+      }
+      .Overlaycontainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform 0.6s ease-in-out;
+        z-index: 5;
+      }
+      .Overlay {
+        z-index: 6;
+        background: #ff416c;
+        background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 0;
+        color: #ffffff;
+        position: relative;
+        left: 0%;
+        height: 100%;
+        width: 100%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+      }
+
+      .Overlaypanel {
+        background: #ff416c;
+        background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 0;
+        color: #ffffff;
+        z-index: 0;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 40px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        transform: translateX(0);
+        transition: transform 2s ease-in-out;
+      }
+      .image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+      }
+      .first{
+        z-index: 0;
+      }
+      .second2{
+        z-index: 0;
+        left: -480px;
+        transform: rotate(-90deg);
+      }
+      .Img_container:hover .image{
+        width: 65%;
+        cursor: pointer;
+      }
+      @keyframes forfirst {
+        0%{top:0%;opacity: 1;}
+        100%{top: -100%;opacity: 0;}
+      }
+      @keyframes forfirst2 {
+        0%{top:-100%;opacity: 0;}
+        100%{top: 0%;opacity: 1;}
+      }
+      @keyframes forsecond {
+        0%{left: -480px;opacity: 0;}
+        100%{left: 0px;opacity: 1;}
+      }
+     .SuperContainer.change-active .first{
+        animation: forfirst 1s ;
+        top: -100%;
+        opacity: 0;
+      }
+      .SuperContainer.change-active .second2 {
+        transform: rotate(0deg);
+        transition: transform 1s;
+        animation: forsecond 1s;
+        left: 0;
+      }
+      .SuperContainer.first-active .first{
+        animation: forfirst2 2s ;
+      }
+      form{
+        height: auto;
+        background-color: rgba(255, 255, 255,0);
+        width: 360px;
+        padding: 0 50px;
+      }
+    </style>
+  </head>
+<body>
+  <div>
+    <div class="SuperContainer" id="SuperContainer">
+      <div class="Overlaycontainer">
+        <div class="Overlay">
+              <div class="Overlaypanel first" id="first">
+                <div class="Img_container">
+                  <h2>Reset password???</h2>
+                  <img src="{% static '/main/images/changepw3.png' %}" alt="Change password Icon" class="image">
+                  <button id="Change_password">Reset</button>
+                </div>      
+              </div>
+              <div class="Overlaypanel second2">
+                    <a href="{% url 'home' %}">Back</a>
+                    <h2>Wanna change password???</h2>
+                    <p>Fill the details and continue</p>
+                    <form method="POST" action="">
+                      {% csrf_token %}
+                    <input id="inp1" type="password" name="opwd" placeholder="Old Password" />
+                    <input id="inp2A" type="password" name="pwd" placeholder="New Password" />
+                    <input id="inp2B" type="password" name="cpwd"placeholder="Confirm Password" />
+                    <pre><input type="checkbox" onclick="myFunction()"/> Show Password</pre>
+                    <button type="submit" id="Change">Change</button>
+                    </form>
+                </div>
+        </div>		
+      </div>
+    </div>  
+  <script>
+    const Change = document.getElementById('Change_password');
+    const SuperContainer = document.getElementById('SuperContainer');
+    const inp1 = document.getElementById('inp1');
+    const inp2A = document.getElementById('inp2A');
+    const inp2B = document.getElementById('inp2B');
+    function myFunction() {
+      var x = [document.getElementById("inp1"),document.getElementById("inp2B"),document.getElementById("inp2A")];
+      for (let i = 0; i < 3; i++) {
+        console.log('hiilo')
+        if (x[i].type === "password") {
+        console.log('hii')
+          x[i].type = "text";
+        } else {
+          x[i].type = "password";
+        }
+      }
+    }
+    Change.addEventListener('click', () => {
+	    SuperContainer.classList.add("change-active");
+      SuperContainer.classList.remove("first-active");
+    });
+    </script>
+  </body>
+</html>

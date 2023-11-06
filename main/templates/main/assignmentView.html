@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CoursePage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+    <style>
+        .drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover,
+.drop-container.drag-active {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title,
+.drop-container.drag-active .drop-title {
+  color: #222;
+}
+ 
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+#showmore{
+  color: var(--color-main);
+}
+#showmore:hover{
+  color: var(--color-light);
+}
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #0d45a5;
+}
+
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Style for the modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* Style for the close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .caer {
+            width: 280px;
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 10px;
+            height:200px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        #pdf {
+            width: 240px;
+            border-radius: 10px;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+            margin-left:12px;
+        }
+
+        /*p {
+            padding: 0px 30px;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+            color: rgba(0, 0, 0, 0.556);
+        }*/
+        .forIframe{
+            background-color: rgba(255, 0, 0, 0);
+            width: 245.5px;
+            height: 150px;
+            z-index: 5;
+            top: 10px;
+            left: 18px;
+            border-radius: 8px;
+            border: solid #555555;
+            border-width: 0 20px 0px 20px;
+            position: absolute;
+            cursor: pointer;
+            margin-top:0.5px;
+            margin-left:15px;
+        }
+        .cadg{
+            width: 250px;
+            padding: 0px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .Header {
+        display: flex;
+        flex: 100%;
+      }
+      .left {
+        flex: 5%;
+      }
+      .right {
+        flex: 5%;
+      }
+      .mid {
+        flex: 75%;
+        background-color: #ffffff;
+      }
+      .Header a {
+        display: block;
+        background-color: rgb(255, 255, 255);
+        list-style-type: none;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: rgba(0, 0, 0, 0.556);
+        text-align: center;
+        font-size: 20px;
+        padding: 30px 30px;
+        text-decoration: none;
+      }
+      .Header a:hover {
+        transition: 0.5s;
+        background-color: rgba(0, 0, 0, 0.556);
+        color: rgb(255, 255, 255);
+      }
+  
+    </style>
+</head>
+<body>
+<div class="w3-container w3-black" style="width:100%;height:739px;padding:0;">
+<div class="w3-container" style="height:100px;width:100%;padding:0;">
+    <div class="w3-container" style="height: 100px; width: 100%;padding:0;margin-bottom:10px;">
+        <div class="Header">
+          <div class="left">
+            <a href="new.html"
+              ><i
+                class="fa fa-home home"
+                style="color: rgba(0, 0, 0, 0.556); font-size: 20px"
+              ></i
+            ></a>
+          </div>
+          <div class="mid"></div>
+          <div class="right"><a href="contact.html">Calender</a></div>
+          <div class="right"><a href="about.html">Courses</a></div>
+          <div class="right">
+            <a href="gallery.html" target="_self">Contact</a>
+          </div>
+          <div class="right"><a href="calender.html">Calender</a></div>
+        </div>
+      </div>
+    </div>
+<div class="w3-row">
+    <div class="w3-col w3-border w3-round-large w3-container" style="width:70%; height:639px; border:2px white dotted;padding-top:40px;font-style:italic;">
+    <strong style="font-size: large;">{{assi.name}}</strong>
+    <p style="font-size: small;float:right;margin-top:8px;">Closes  {{assi.closing_date}} {{assi.closing_time}}</p>
+    <p style="font-size: smaller; color:gray;margin-top:25px;">Instructions</p>
+    <div  style="height:200px;overflow-y: scroll;">
+    <ol style="font-style: normal;background-color: white;color: black;" id="instructions">
+        <li>Last date for submission: {{assi.closing_date}} ({{assi.closing_time}}).</li>
+        <li>Please upload the scanned copies of your handwritten solutions in the pdf format on MS teams course portal before the deadline.</li>
+        <li>[IMPORTANT] Please use the following naming convention for the uploaded file: A2_<student_fullname>_<student_id>.pdf</li>
+        <li>This assignment will be graded, the solutions you submit must be your own. Any instances of copying and dishonest submissions will attract penalties.</li>
+        <li><strong>This assignment will be graded</strong></li>
+        <li>This assignment will be graded, the solutions you submit must be your own. Any instances of copying and dishonest submissions will attract penalties.</li>
+        <li>This assignment will be graded, the solutions you submit must be your own. Any instances of copying and dishonest submissions will attract penalties.</li>
+    </ol>
+    </div>
+    <p style="font-size: small;color: gray;">Reference materials</p>
+    
+    <div class="w3-container w3-round-medium" style="width: 50%; font-style: normal; position: relative; height: 200px;">
+        <div class="cadg" onclick="openPdfPopup('Physics project 1.pdf', 1)" style="height:100px;">
+            <div class="caer w3-card-4">
+                <iframe id="pdf" src="Physics project 1.pdf" frameborder="0"></iframe>
+                <div class="w3-display-container">
+                <p style="color:black;" class="w3-display-middle">Physics Project 1</p>
+                </div>
+            </div>
+            </div>
+            <div class="forIframe" onclick="openPdfPopup('Physics project 1.pdf', 1)">
+            </div>
+            <div id="pdfModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closePdfPopup()">&times;</span>
+                    <iframe id="pdfIframe" src="" style="width: 100%; height: 100vh; border: none;"></iframe>
+                </div>
+            </div>
+</div>
+    
+  
+  
+  
+  
+  
+    <p style="font-size: small;color: gray;margin-top:20px ;">Points</p>  
+    <p style="margin-top:-15px;">{{assi.total_marks}} points avaliable</p> 
+    </div>
+    <div class="w3-col w3-border w3-round-large w3-display-container" style="width:28%; height:639px;border:2px white dotted;margin-left:23px;">
+        <form method = "POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+        <label for="fileInput" class="drop-container" id="dropcontainer" style="margin-top: 20px; margin-left: 5px; margin-right: 5px;">
+            <span class="drop-title">Drop files here </span>
+            or
+            <input type="file" name="fileinput" id="fileInput" accept=".pdf" onchange="displayPDFLink()">
+            <div id="pdfLinkContainer"></div>    
+        </label>
+   
+        <div class="hello w3-container w3-round-xxlarge w3-center" style="margin-top:30px;width:95.5%;height:300px;margin-left:10px;display: none;">
+        <img class="w3-round-xxlarge w3-animate-top" src="200.webp" width="80%" height="80%">
+        <p class="w3-animate-zoom">Hey! you have successfully submitted your assignment</p>
+        </div>
+        <button type="submit" class="w3-button w3-border-white w3-round-xxlarge w3-display-bottomright" style=" border: 2px dotted; text-align: center;margin-bottom:10px;margin-right:10px;" >Submit</button>
+    </form>
+        {% comment %} <button type="submit" class="w3-button w3-border-white w3-round-xxlarge w3-display-bottomright" style=" border: 2px dotted; text-align: center;margin-bottom:10px;margin-right:10px;" onclick="submit();">Submit</button> {% endcomment %}
+    </div>   
+</div>
+</div>
+<script>
+    let submitted = false;
+    const dropContainer = document.getElementById("dropcontainer");
+
+    dropContainer.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropContainer.classList.add("drag-active");
+    });
+
+    dropContainer.addEventListener("dragleave", () => {
+        dropContainer.classList.remove("drag-active");
+    });
+
+    dropContainer.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropContainer.classList.remove("drag-active");
+
+        const fileInput = document.getElementById("fileInput");
+        fileInput.files = e.dataTransfer.files;
+        displayPDFLink();
+    });
+
+    function displayPDFLink() {
+        const fileInput = document.getElementById("fileInput");
+        const pdfLinkContainer = document.getElementById("pdfLinkContainer");
+
+        if (fileInput.files.length > 0) {
+            const selectedFile = fileInput.files[0];
+            if (selectedFile.type === "application/pdf") {
+                const pdfLink = document.createElement("a");
+                pdfLink.href = URL.createObjectURL(selectedFile);
+                pdfLink.textContent = "Open PDF";
+                pdfLink.target = "_blank";
+                pdfLinkContainer.innerHTML = "";
+                pdfLinkContainer.appendChild(pdfLink);
+            } else {
+                alert("Please select a valid PDF file.");
+                fileInput.value = "";
+                pdfLinkContainer.innerHTML = "";
+            }
+        }
+    }
+
+{% comment %} function submit() {
+    const fileInput = document.getElementById("fileInput");
+    if (submitted) {
+        alert("You have already submitted a PDF. You cannot change it.");
+        return;
+    }
+
+    if (fileInput.files.length > 0) {
+        const selectedFile = fileInput.files[0];
+        if (selectedFile.type === "application/pdf") {
+            const elements = document.getElementsByClassName("hello");
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].style.display = "block";
+            }
+            submitted = true;
+            fileInput.disabled = true; 
+        } else {
+
+            alert("Please select a valid PDF file.");
+        }
+    } else {
+        alert("Please select a PDF file first.");
+    }
+} {% endcomment %}
+
+
+
+function openPdfPopup(pdfFileName, page) {
+    const pdfURL = pdfFileName + '#page=' + page;
+    document.getElementById('pdfIframe').src = pdfURL;
+    document.getElementById('pdfModal').style.display = 'block';
+}
+
+function closePdfPopup() {
+    document.getElementById('pdfModal').style.display = 'none';
+    document.getElementById('pdfIframe').src = '';
+}
+
+    
+</script>
+</body>
+</html>
